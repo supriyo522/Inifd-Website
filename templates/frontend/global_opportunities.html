@@ -1,0 +1,51 @@
+{% extends 'frontend/base.html' %}
+{% block title %}
+   <title>Global opportunities</title>  {% endblock %}
+{% block content %}
+    <div class="inner-banner">
+        <div class="container">
+            <div class="col-sm-12">
+                <h2>Global Opportunities</h2>
+            </div>
+            <div class="col-sm-12 inner-breadcrumb">
+                <ul>
+                    <li><a href="https://inifdlindsaystreet.net/">Home</a></li>
+                    <li>Pages</li>
+                    <li>Global Opportunities</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Inner Banner Wrapper End -->
+    <!--=======================bodypart========================-->
+    <!-- Inner Banner Wrapper End -->
+    <section class="inner-wrapper">
+        <div class="custom-container">
+            <div class="row">
+                {% for opportunity in global_opportunities %}
+                    <div class="col-md-4 col-sm-6">
+                        <div class="event-blok">
+                            <div class="curriculum-event c-red" data-mh="curriculum">
+                                <div class="curriculum-event-thumb">
+                                    <div class="img-holder2">
+                                        <img src="{{ opportunity.banner.url }}"
+                                             alt="image">
+                                    </div>
+                                    <div class="overlay-standard overlay--yellow"></div>
+                                </div>
+                                <div class="curriculum-event-content">
+                                    <a href="" class="h5 title">{{ opportunity.title }}</a>
+                                    <p class="event-pp">{{ opportunity.description }}</p>
+                                    <a href="{% url 'view_opportunity' opportunity.id opportunity.slug %}"
+                                       class="main-read" style="text-decoration: none" >Read
+                                        More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

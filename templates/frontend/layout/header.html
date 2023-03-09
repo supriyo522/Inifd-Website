@@ -1,0 +1,145 @@
+{% load static %}
+<div class="container"
+     style="padding-top: 5px!important; padding-bottom: 5px!important; background: #141D38;max-width: 100%!important;">
+    <div class="admission-top">
+        <div class="row">
+            <div class="col-md-12 justify-content-center d-flex align-items-center">
+                <span style="color: white"
+                      class="d-none d-md-block me-2">{{ website_setting.top_header_popup_text }}</span>
+                <button data-bs-toggle="modal" data-bs-target="#applicationModal" class="btn btn-primary">Online
+                    Application
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="aplnow">
+    <a href="#" data-bs-toggle="modal" data-bs-target="#applicationModal">
+        <img src="{% static 'frontend/images/applynow.png' %}" alt=""/>
+    </a>
+</div>
+<div class="container" style="padding-top: 5px!important;padding-bottom: 5px">
+    <header id="mainHeader">
+        <div class="row">
+            <div class="col-sm-12 d-flex justify-content-between align-items-center">
+                <div class="logo">
+                    <a href="/">
+                        <img src="{% static 'frontend/images/logo.png' %}" alt=""/>
+                    </a>
+                </div>
+                <input type="checkbox" name="" id="togglecheck"/>
+                <label for="togglecheck" class="toggle-btn">
+                    <div class="spinner top"></div>
+                    <div class="spinner middle"></div>
+                    <div class="spinner bottom"></div>
+                </label>
+                <nav class="side-navbar">
+                    <ul>
+                        <li>
+                            <a href="/">Home</a>
+                        </li>
+                        <li>
+                            <label for="about" class="show-btn">About <i class="fa fa-angle-down"></i></label>
+                            <a href="#">About <i class="fa fa-angle-down"></i></a>
+                            <input type="checkbox" name="" id="about"/>
+                            <ul>
+                                <li>
+                                    <a href="{% url 'about_inifd' %}">About inifd lindsay street</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'media_coverage' %}">Media coverage</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'award_and_recognition' %}">Award & recognition</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'global_opportunities' %}" class="border-bott">Global
+                                        opportunities</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <label for="interior-design" class="show-btn">Interior design <i
+                                    class="fa fa-angle-down"></i></label>
+                            <a href="#">Interior design <i class="fa fa-angle-down"></i></a>
+                            <input type="checkbox" name="" id="interior-design"/>
+                            <ul>
+                                <li>
+                                    <a href="{% url 'interior_design_course' %}">Interior design Course</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'interior_design_course_download_brochure' %}">Brochure download</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'interior_design_addmisson_form' %}" class="border-bott">Admission
+                                        form</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <label for="fashion-design" class="show-btn">Fashion design <i
+                                    class="fa fa-angle-down"></i></label>
+                            <a href="#">Fashion design <i class="fa fa-angle-down"></i></a>
+                            <input type="checkbox" name="" id="fashion-design"/>
+                            <ul>
+                                <li>
+                                    <a href="{% url 'fashion_design_course' %}">Fashion design course</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'fashion_design_course_download_brochure' %}">Brochure download</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'fashion_design_admission_form' %}" class="border-bott">Admission
+                                        form</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="{% url 'gallery' %}">Gallery</a>
+                        </li>
+                        <li>
+                            <label for="students-life" class="show-btn">Fashion design <i
+                                    class="fa fa-angle-down"></i></label>
+                            <a href="#">Students life <i class="fa fa-angle-down"></i></a>
+                            <input type="checkbox" name="" id="students-life"/>
+                            <ul>
+                                <li>
+                                    <a href="{% url 'upcoming_events' %}">Upcoming events</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'past_events' %}">Past events</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'students_work' %}">Student work</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'videos_gallery' %}">Videos</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'gallery' %}" class="border-bott">Gallery</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <label for="placement" class="show-btn">Fashion design <i
+                                    class="fa fa-angle-down"></i></label>
+                            <a href="#">Placement <i class="fa fa-angle-down"></i></a>
+                            <input type="checkbox" name="" id="placement"/>
+                            <ul>
+                                <li>
+                                    <a href="{% url 'success_stories' %}">Success story</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'placement_support' %}" class="border-bott">Placement support</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="{% url 'contact_us' %}">Get in Touch</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+</div>

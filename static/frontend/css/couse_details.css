@@ -1,0 +1,136 @@
+
+.job-item {
+    background-color: #fff;
+}
+
+.job-tab .nav-tabs {
+    margin-bottom: 40px;
+    border-bottom: 0;
+}
+
+.job-tab .nav-tabs > li {
+    float: none;
+    display: inline;
+}
+
+.job-tab .nav-tabs li {
+    margin-right: 15px;
+}
+
+@media (min-width: 767px) {
+    .job-tab .nav-tabs li:last-child {
+        margin-right: 0;
+    }
+}
+
+.job-tab .nav-tabs {
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+}
+
+.job-tab .nav-tabs > li a {
+    display: inline-block;
+    background-color: #dc1319;
+    border: none;
+    border-radius: 10px;
+    font-size: 22px;
+    color: whitesmoke;
+    padding: 5px 20px;
+    margin-bottom: 7px;
+}
+
+@media (max-width: 767px) {
+    .job-tab .nav-tabs > li a {
+        font-size: 16px;
+        padding: 5px 20px;
+        margin-bottom: 10px;
+    }
+}
+
+.job-tab .nav-tabs > li > a.active,
+.job-tab .nav-tabs > li a.active > :focus,
+.job-tab .nav-tabs > li > a.active:hover,
+.job-tab .nav-tabs > li > a:hover {
+    border: none;
+    background-color: #008def;
+    color: #fff;
+}
+
+.job-item {
+    border-radius: 3px;
+    position: relative;
+    margin-bottom: 30px;
+    z-index: 1;
+}
+
+.job-item .btn.btn-primary {
+    text-transform: capitalize;
+}
+
+.job-item .job-info {
+    font-size: 14px;
+    color: #000;
+    overflow: hidden;
+    padding: 25px 25px 20px;
+}
+
+.job-info .tr-title {
+    font-size: 14px;
+    display: block;
+    font-weight: bold;
+}
+
+
+
+.job-info ul {
+    margin-bottom: 30px;
+}
+
+.job-meta li span {
+    font-size: 14px;
+}
+
+.job-item:hover .time,
+.job-item:hover .time:after {
+    opacity: 0;
+}
+
+.job-item .time span {
+    font-size: 12px;
+    color: #bebebe;
+    line-height: 25px;
+}
+
+.job-item .btn.btn-primary,
+.role .btn.btn-primary,
+.job-item .time a span {
+    padding: 5px 10px;
+    border-radius: 4px;
+    line-height: 10px;
+    font-size: 12px;
+}
+
+.job-item .time a span {
+    color: #fff;
+    background-color: #f1592a;
+    border-color: #f1592a;
+}
+
+.job-item .time a span.part-time {
+    background-color: #00aeef;
+    border-color: #00aeef;
+}
+
+.job-item .time a span.freelance {
+    background-color: #92278f;
+    border-color: #92278f;
+}
+
+
+
+.tr-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}

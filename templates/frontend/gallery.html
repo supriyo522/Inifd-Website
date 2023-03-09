@@ -1,0 +1,53 @@
+{% extends 'frontend/base.html' %}
+{% block title %}
+    <title>Gallery</title>
+{% endblock %}
+{% block content %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.css"
+          integrity="sha512-Woz+DqWYJ51bpVk5Fv0yES/edIMXjj3Ynda+KWTIkGoynAMHrqTcDUQltbipuiaD5ymEo9520lyoVOo9jCQOCA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <div class="inner-banner">
+        <div class="container">
+            <div class="col-sm-12">
+                <h2>Gallery</h2>
+            </div>
+            <div class="col-sm-12 inner-breadcrumb">
+                <ul>
+                    <li><a href="https://inifdlindsaystreet.net/">Home</a></li>
+                    <li>Pages</li>
+                    <li>Gallery</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Inner Banner Wrapper End -->
+    <!--=======================bodypart========================-->
+    <section class="inner-wrapper">
+        <div class="custom-container">
+            <h2>Student Life Gallery</h2>
+            <div class="inner-wrapper-main about-edu">
+                <div class="row">
+                    {% for item in items %}
+                        <div class="col-md-3 col-sm-6">
+                            <div class="image-gallery-box">
+                                <div class="img-holder">
+                                    <a class="example-image-link" href="{{ item.image.url }}" data-lightbox="example-1">
+                                        <img class="example-image img-responsive" src="{{ item.image.url }}"
+                                             alt="image-1"/></a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+{% block script %}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"
+            integrity="sha512-Ixzuzfxv1EqafeQlTCufWfaC6ful6WFqIz4G+dWvK0beHw0NVJwvCKSgafpy5gwNqKmgUfIBraVwkKI+Cz0SEQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+{% endblock %}
+

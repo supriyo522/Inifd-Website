@@ -1,0 +1,181 @@
+{% extends 'backend/layout/base.html' %} {% load mptt_tags %} {% block title %}
+    <title>Menu Items</title>
+{% endblock %} {% block content %}
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+    <style>
+
+
+        .tree-structure {
+            list-style: none;
+            clear: both;
+            padding-left: 15px;
+        }
+
+        .tree-structure li {
+            position: relative;
+        }
+
+        .tree-structure li a {
+            font-weight: normal;
+            color: red;
+            text-decoration: none;
+            font-weight: 700;
+            vertical-align: middle;
+            -webkit-transition: all 0.5s ease-in-out;
+            -moz-transition: all 0.5s ease-in-out;
+            -ms-transition: all 0.5s ease-in-out;
+            -o-transition: all 0.5s ease-in-out;
+            transition: all 0.2s ease-in-out;
+            display: inline-block;
+            max-width: calc(100% - 50px);
+            vertical-align: top;
+        }
+
+        .tree-structure li a:hover {
+            padding-left: 5px;
+        }
+
+        .tree-structure > li > .num {
+            display: inline-block;
+            background: #333;
+            min-width: 24px;
+            padding-left: 0px;
+            padding-right: 0px;
+            text-align: center;
+            padding: 3px 9px;
+            margin-right: 10px;
+            color: #fff;
+            font-weight: 700;
+            font-size: 12px;
+        }
+
+        .tree-structure > li > .num:after {
+            position: absolute;
+            content: "";
+            width: 1px;
+            height: 100%;
+            background-color: #939393;
+            top: 5px;
+            left: 12px;
+            z-index: -1;
+        }
+
+        .tree-structure > li:last-child > .num:after {
+            height: calc(100% - 44px);
+        }
+
+
+        .tree-structure ol li {
+            list-style-type: none;
+            padding: 8px 0
+        }
+
+        .tree-structure ol li .num {
+            position: relative;
+        }
+
+        .tree-structure ol li a {
+            color: #000;
+            font-weight: normal;
+        }
+
+        .tree-structure .num {
+            background-color: #666;
+            min-width: 24px;
+            padding-left: 0px;
+            padding-right: 0px;
+            text-align: center;
+            padding: 3px 9px;
+            margin-right: 10px;
+            color: #fff;
+            font-weight: 700;
+            font-size: 12px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .tree-structure ol li .num:before {
+            position: absolute;
+            content: "";
+            top: 0;
+            bottom: 0;
+            right: 100%;
+            margin: auto;
+            width: 33px;
+            height: 1px;
+            background-color: #939393;
+        }
+    </style>
+    
+    <main class="page-content">
+        <!--breadcrumb-->
+        <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+            <div class="breadcrumb-title pe-3">Website setting</div>
+            <div class="ps-3">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-0 p-0">
+                        <li class="breadcrumb-item">
+                            <a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">Menu Items</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="ms-auto">
+                <div class="btn-group">
+                    <a href="{% url 'backend_add_menu_item' %}" type="button" class="btn btn-primary">Add item</a>
+                </div>
+            </div>
+        </div>
+        <!--end breadcrumb-->
+        {% for message in messages %}
+            <div
+                    class="alert alert-{{ message.tags }} alert-dismissible fade show text-center"
+                    role="alert"
+            >
+                {{ message.message }}
+            </div>
+        {% endfor %}
+        <h6 class="mb-0 text-uppercase">Menu items</h6>
+        <hr/>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        {% recursetree menu_items %}
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <ol class="tree-structure">
+                                            <li>
+                                                <span class="num">{{ node.code }}</span>
+                                                <a>{{ node.title }} </a>
+                                                {% if not node.is_leaf_node %}
+                                                    <div class="row">
+                                                        <div class="col children">
+                                                            <ul class="children">
+                                                                {{ children }}
+                                                            </ul>
+                                                        </div>
+                                                    
+                                                    </div>
+                                                
+                                                {% endif %}
+                                            </li>
+                                        
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endrecursetree %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+{% endblock %}

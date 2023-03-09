@@ -1,0 +1,217 @@
+{% extends 'backend/layout/base.html' %} {% block title %}
+    <title>Website settings</title> {% endblock %} {% block content %}
+    <main class="page-content">
+        <!--breadcrumb-->
+        <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+            <div class="breadcrumb-title pe-3">Website</div>
+            <div class="ps-3">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-0 p-0">
+                        <li class="breadcrumb-item">
+                            <a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">Settings</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="ms-auto">
+                <div class="btn-group">
+                    <a
+                            href="{% url 'backend_dashboard' %}"
+                            type="button"
+                            class="btn btn-outline-dark"
+                    >
+                        <i class="bx bx-arrow-back fa-sm"></i>
+                        Back</a
+                    >
+                </div>
+            </div>
+        </div>
+        <!--breadcrumb-->
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show text-center" role="alert">
+                {{ message.message }}
+            </div>
+        {% endfor %}
+        <div class="card">
+            <div class="card-body">
+                <div class="border p-4 rounded">
+                    <div class="row g-3 align-content-between">
+                        <div class="col-12 col-lg-4 col-md-6 me-auto">
+                            <h5 class="mb-1">Website setting</h5>
+                        </div>
+                        <div class="col-12 col-lg-3 col-6 col-md-3">
+                            <button
+                                    id="websiteSettingEditBtn"
+                                    type="button"
+                                    class="btn btn-primary"
+                            >
+                                Edit
+                            </button>
+                        </div>
+                    </div>
+                    <hr/>
+                    <form id="websiteSettingsForm" method="post" action="" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="row mb-3">
+                            <label for="inputEnterYourName" class="col-sm-3 col-form-label"
+                            >Logo</label
+                            >
+                            <div class="col-sm-9">
+                                {{ form.logo }} <span><small
+                                    style="color: red">Size of logo should be 110px*59px</small></span>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="inputPhoneNo2" class="col-sm-3 col-form-label"
+                            >Title</label
+                            >
+                            <div class="col-sm-9">
+                                {{ form.title }}
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="inputEmailAddress2" class="col-sm-3 col-form-label"
+                            >Address</label
+                            >
+                            <div class="col-sm-9">
+                                {{ form.address }}
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="inputChoosePassword2" class="col-sm-3 col-form-label"
+                            >Contact</label
+                            >
+                            <div class="col-sm-9">
+                                {{ form.contact }}
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="inputConfirmPassword2" class="col-sm-3 col-form-label"
+                            >Email</label
+                            >
+                            <div class="col-sm-9">
+                                {{ form.email }}
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="inputAddress4" class="col-sm-3 col-form-label"
+                            >Latitude</label
+                            >
+                            <div class="col-sm-9">
+                                {{ form.latitude }}
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="inputAddress4" class="col-sm-3 col-form-label"
+                            >Longitude</label
+                            >
+                            <div class="col-sm-9">
+                                {{ form.longitude }}
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="inputAddress4" class="col-sm-3 col-form-label"
+                            >Description</label
+                            >
+                            <div class="col-sm-9">
+                                {{ form.description }}
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="inputAddress4" class="col-sm-3 col-form-label"
+                            >Key Words</label
+                            >
+                            <div class="col-sm-9">
+                                {{ form.keywords }}
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="inputAddress4" class="col-sm-3 col-form-label"
+                            >Facebook</label
+                            >
+                            <div class="col-sm-9">
+                                {{ form.facebook }}
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="inputAddress4" class="col-sm-3 col-form-label"
+                            >twitter</label
+                            >
+                            <div class="col-sm-9">
+                                {{ form.twitter }}
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="inputAddress4" class="col-sm-3 col-form-label"
+                            >Instagram</label
+                            >
+                            <div class="col-sm-9">
+                                {{ form.instagram }}
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="inputAddress4" class="col-sm-3 col-form-label"
+                            >Whatsapp</label
+                            >
+                            <div class="col-sm-9">
+                                {{ form.whatsapp }}
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="inputAddress4" class="col-sm-3 col-form-label"
+                            >Youtube</label
+                            >
+                            <div class="col-sm-9">
+                                {{ form.youtube }}
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="row mb-3">
+                            <label for="inputAddress4" class="col-sm-3 col-form-label"></label>
+                            <div class="col-sm-9">
+                                <div class="form-check">
+                                    {{ form.top_header_popup }}
+                                    <label class="form-check-label" for="gridCheck4"
+                                    >Top header popup</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="inputAddress4" class="col-sm-3 col-form-label"
+                            >Top header popup text</label
+                            >
+                            <div class="col-sm-9">
+                                {{ form.top_header_popup_text }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-3 col-form-label"></label>
+                            <div class="col-sm-9">
+                                <button id="websiteSettingSaveBtn" type="submit" class="btn btn-primary px-5">Save
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!--end of main-content-->
+    <script>
+        $(document).ready(function () {
+            $("#websiteSettingSaveBtn").hide()
+            $("#websiteSettingsForm :input").prop("disabled", true);
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("#websiteSettingEditBtn").click(function () {
+                $("#websiteSettingsForm :input").prop("disabled", false);
+                $("#websiteSettingSaveBtn").show()
+                $("#websiteSettingEditBtn").hide()
+            });
+        });
+    </script>
+{% endblock %}

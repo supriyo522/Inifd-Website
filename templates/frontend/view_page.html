@@ -1,0 +1,86 @@
+{% extends 'frontend/base.html' %}
+{% load static %}
+{% block title %} <title>{{ page.title }}</title>{% endblock %}
+{% block content %}
+    <div class="inner-banner">
+        <div class="container">
+            <div class="col-sm-12">
+                <h2>{{ sub_banner.title }}</h2>
+            </div>
+            <div class="col-sm-12 inner-breadcrumb">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li>Pages</li>
+                    <li>{{ page.title }}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Inner Banner Wrapper End -->
+    <!--=======================bodypart========================-->
+    <section class="inner-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="inner-wrapper-main about-edu">
+                    <div class="col-md-8">
+                        {{ page.content|safe }}
+                    </div>
+                    <div class="col-md-4">
+                        <form
+                                method="post" id="page_course_enquiry_form">
+                            {% csrf_token %}
+                            <h3>Course Enquiry</h3>
+                            <fieldset>
+                                {{ form.name }}
+                            </fieldset>
+                            <fieldset style="color: black;">
+                                {{ form.email }}
+                            </fieldset>
+                            <fieldset>
+                                {{ form.phone }}
+                            </fieldset>
+                            {{ form.course }}
+                            <fieldset>
+                                {{ form.message }}
+                            </fieldset>
+                            <fieldset>
+                                <button id="course_inquiry_form_btn" name="submit" type="submit"
+                                        data-submit="...Sending">Submit
+                                </button>
+                            </fieldset>
+                        </form>
+                        
+                        <div style="margin-top:15px">
+                            <iframe style="border: 2px solid #fff;" width="100%" height="300"
+                                    src="https://www.youtube.com/embed/p5VIv8yWWNk" frameborder="0"
+                                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="enent_gallery">
+                <div class="row">
+                    <div class="inner-wrapper-main about-edu">
+                        <!-- Gallery Start -->
+                        {% for item in f_items %}
+                            <div class="col-sm-4">
+                                <div class="image-gallery-box">
+                                    <div class="img-holder">
+                                        <a class="example-image-link"
+                                           href="{{ item.image.url }}"
+                                           data-lightbox="example-1">
+                                            <img class="example-image img-responsive"
+                                                 src="{{ item.image.url }}"
+                                                 alt=""/></a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

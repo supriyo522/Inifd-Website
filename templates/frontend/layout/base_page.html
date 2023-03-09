@@ -1,0 +1,125 @@
+{% extends 'frontend/base.html' %}
+{% load static %}
+{% block title %} <title>Interior design course</title>{% endblock %}
+{% block content %}
+    <div class="inner-banner">
+        <div class="container">
+            <div class="col-sm-12">
+                <h2>Fashion Design college in kolkata</h2>
+            </div>
+            <div class="col-sm-12 inner-breadcrumb">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li>Pages</li>
+                    <li>Fashion Design college in kolkata</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Inner Banner Wrapper End -->
+    <!--=======================bodypart========================-->
+    <section class="inner-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="inner-wrapper-main about-edu">
+                    <div class="col-md-8">
+                        <img class="img-responsive"
+                             src="{% static 'frontend/images/career-bg.jpg' %}" alt="">
+                        <h2>INIFD will make you discover, learn, grow and get you noticed</h2>
+                        <p>Get a super specialization program in Fashion Design only at INIFD Lindsay Street Kolkata for
+                            a creative career.</p>
+                        <p>The boom in the fashion industry is hard to deny. It is more than $35 billion industry,
+                            growing in leaps and bounds at 9% each year. It’s important therefore to grab the bull by
+                            the horns and be proactive right from the beginning. It’s
+                            important to take initiative because nothing in this world of fashion would be handed to
+                            you. Also we are <strong>best fashion design college in kolkata.</strong></p>
+
+                        <p>It is a two year practice based and industry focused program, which prepare students for the
+                            challenges in design and fashion industry and we are <strong>best fashion design institute
+                                in kolkata.</strong></p>
+
+                        <p>This pioneering new program will challenge the students to explore fashion in context through
+                            the intersection if theory and practice, positioning them to shape a future in fashion that
+                            is innovative and interdisciplinary. It will also offer unique opportunities to transform
+                            concepts into tangible products, services and experiences.</p>
+
+                        <p>The main formative objective of the super specialization program in Fashion Design is
+                            therefore to acquire an in-depth knowledge of the fashion sector in all of its aspects,
+                            through an
+                            integrated approach between creative, cultural, productive marketing and communication
+                            aspects</p>
+
+                        <p>INIFD explores path breaking ideas to design. It's recognised by the industry as the world's
+                            largest design network.</p>
+
+                        <p>You will be taught by academic staff who are professional practitioners and constantly
+                            engaged in designform day one,
+                            So that you will have the skills, entrepreneurial spirit and knowlwdge for a successful
+                            carrer in Fashion and Interior Design</p>
+
+                    </div>
+                    <div class="col-md-4">
+                        <div class="alert alert-success" id="asmsg" style="display:none;">Thanks For contacting with
+                            us
+                        </div>
+                        <div class="alert alert-success" id="anmsg" style="display:none;">Message didn't sent,please try
+                            again!!
+                        </div>
+                        <form id="contact"
+                              method="post" id="course_enquiry_form">
+                            {% csrf_token %}
+                            <h3>Course Enquiry</h3>
+                            <fieldset>
+                                {{ form.name }}
+                            </fieldset>
+                            <fieldset>
+                                {{ form.email }}
+                            </fieldset>
+                            <fieldset>
+                                {{ form.phone }}
+                            </fieldset>
+                            {{ form.course }}
+                            <fieldset>
+                                {{ form.message }}
+                            </fieldset>
+                            <fieldset>
+                                <button id="course_inquiry_form_btn" name="submit" type="submit"
+                                        data-submit="...Sending">Submit
+                                </button>
+                            </fieldset>
+                        </form>
+
+                        <div style="margin-top:15px">
+                            <iframe style="border: 2px solid #fff;" width="100%" height="300"
+                                    src="https://www.youtube.com/embed/p5VIv8yWWNk" frameborder="0"
+                                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="enent_gallery">
+                <div class="row">
+                    <div class="inner-wrapper-main about-edu">
+                        <!-- Gallery Start -->
+                        {% for item in f_items %}
+                            <div class="col-sm-4">
+                                <div class="image-gallery-box">
+                                    <div class="img-holder">
+                                        <a class="example-image-link"
+                                           href="{{ item.image.url }}"
+                                           data-lightbox="example-1">
+                                            <img class="example-image img-responsive"
+                                                 src="{{ item.image.url }}"
+                                                 alt=""/></a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends 'frontend/base.html' %}
+{% block title %}<title>Upcoming Events</title>{% endblock %}
+{% block content %}
+    <div class="inner-banner">
+        <div class="container">
+            <div class="col-sm-12">
+                <h2>Upcoming Events</h2>
+            </div>
+            <div class="col-sm-12 inner-breadcrumb">
+                <ul>
+                    <li><a href="https://inifdlindsaystreet.net/">Home</a></li>
+                    <li>Pages</li>
+                    <li>Upcoming Events</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Inner Banner Wrapper End -->
+    <!--=======================bodypart========================-->
+    <section class="inner-wrapper">
+        <div class="container">
+            
+            <div class="row">
+                {% for event in events %}
+                    <div class="col-md-4">
+                        <div class="item-box">
+                            <a href="#"> <img alt="New York Fashion Week"
+                                              src="{{ event.banner.url }}"
+                                              class="item-container"> </a>
+                            <div class="upcoming__hover__info">
+                                <div class="upcoming__hover__action">
+                                    <div class="upcoming__event__time">
+                                        <div class="event__time">
+                                            <span>{{ event.date|date:"d" }}</span>
+                                            <span>{{ event.date|date:"b" }}</span>
+                                        </div>
+                                        <span class="event__separator"></span>
+                                        <ul class="event__location">
+                                            <li><i class="far fa-clock"></i>{{ event.time }}</li>
+                                            <li><i class="fas fa-map-marker-alt"></i>{{ event.location }}</li>
+                                        </ul>
+                                    </div>
+                                    <div class="upcoming__details hidden-xs">
+                                        <p><a href="#">{{ event.title }}</a></p>
+                                    </div>
+                                    <div class="event__btn">
+                                        <a href="{% url 'view_event' event.slug %}"
+                                           class="more_btn__block mt-0">View Details
+                                            <i class="fa fa-angle-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

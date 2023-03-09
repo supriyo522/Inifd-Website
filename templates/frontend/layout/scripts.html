@@ -1,0 +1,345 @@
+{% load static %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+        integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src={% static 'frontend/js/blazy.min.js' %} type="text/javascript"></script><!-- Global Site Tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-83282272-3"></script>
+<script>
+    function checkIfValidIndianMobileNumber(str) {
+        // Regular expression to check if string is a Indian mobile number
+        const regexExp = /^[6-9]\d{9}$/gi;
+        return regexExp.test(str);
+    }
+</script>
+<script>
+
+    function getCookie(cName) {
+        const name = cName + "=";
+        const cDecoded = decodeURIComponent(document.cookie); //to be careful
+        const cArr = cDecoded.split("; ");
+        let res;
+        cArr.forEach((val) => {
+            if (val.indexOf(name) === 0) res = val.substring(name.length);
+        });
+        return res;
+    }
+
+    let cookies = document.cookie;
+    $(document).ready(function () {
+        if (cookies.indexOf("isEnquiryPopupFormSubmitted") === -1) {
+            setTimeout(function () {
+                $("#leadModal").modal("show");
+            }, 1000);
+        }
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $("#leadModalSubmitBtn").click(function (e) {
+            e.preventDefault();
+            const name = $("#leadName").val();
+            const mobile = $("#leadPhone").val();
+            const phoneno = /^[6-9]\d{9}$/;
+            if (name === "" || mobile === "") {
+                alert("Please fill all the fields");
+            } else if (!mobile.match(phoneno)) {
+                alert("Please enter a valid mobile number");
+            } else {
+                $(this).prop("disabled", true);
+                $(this).html('<i class="fa fa-spinner fa-spin"></i>');
+                $.ajax({
+                    url: "{% url 'submit_course_enquiry' %}",
+                    type: "POST",
+                    data: JSON.stringify({
+                        "name": name,
+                        "phone": mobile,
+                    }),
+                    headers: {
+                        "X-CSRFToken": $('input[name="csrfmiddlewaretoken"]').val(),
+                    },
+                    success: function (data) {
+                        $("#LeadModalForm").hide();
+                        $("#eValidMobile").text(data["mobile"]);
+                        $("#eValidMobileInput").val(data["mobile"]);
+                        $("#enqOtpVForm").css("display", "block")
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                });
+            }
+        });
+
+        $("#enqOtpVBtn").click(function (e) {
+            e.preventDefault();
+            const otp = $("#enqOtpVFormInput").val();
+            const mobile = $("#eValidMobileInput").val();
+            if (otp === "") {
+                alert("Please enter the OTP");
+            } else {
+                $(this).prop("disabled", true);
+                $(this).html('<i class="fa fa-spinner fa-spin"></i>');
+                $.ajax({
+                    url: "{% url 'enquiry_otp_validation' %}",
+                    type: "POST",
+                    data: JSON.stringify({
+                        "otp": otp,
+                        "phone": mobile,
+                    }),
+                    headers: {
+                        "X-CSRFToken": $('input[name="csrfmiddlewaretoken"]').val(),
+                    },
+                    success: function (data) {
+                        if (data["success"]) {
+                            alert("Thank you for your interest. We will get back to you shortly.");
+                            document.cookie = "isEnquiryPopupFormSubmitted=true; path=/";
+                            $("#leadModal").modal("hide");
+                            $("#enqOtpVBtn").prop("disabled", false);
+                            $("#enqOtpVBtn").html("Submit");
+                        } else {
+                            alert("Invalid OTP");
+                            $("#enqOtpVBtn").prop("disabled", false);
+                            $("#enqOtpVBtn").html("Submit");
+                        }
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                });
+            }
+        });
+
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $("#applicationModalSubmitBtn").click(function (e) {
+            e.preventDefault();
+            const name = $("#applicationName").val();
+            const email = $("#applicationEmail").val();
+            const phone = $("#applicationPhone").val();
+            const course = $("#applicationCourse").val();
+            const message = $("#applicationMessage").val();
+            const phoneno = /^[6-9]\d{9}$/;
+            const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+            if (name === "" || email === "" || phone === "" || course === "") {
+                alert("Please fill all the fields");
+            } else if (!phone.match(phoneno)) {
+                alert("Please enter a valid mobile number");
+            } else if (!emailRegex.test(email)) {
+                alert("Please enter a valid email");
+
+            } else {
+                $(this).prop("disabled", true);
+                $(this).html('<i class="fa fa-spinner fa-spin"></i>');
+                $.ajax({
+                    url: "{% url 'submit_application_form' %}",
+                    type: "POST",
+                    data: JSON.stringify({
+                        "name": name,
+                        "phone": phone,
+                        "email": email,
+                        "course": course,
+                        "message": message,
+                    }),
+                    headers: {
+                        "X-CSRFToken": $('input[name="csrfmiddlewaretoken"]').val(),
+                    },
+                    success: function (data) {
+                        alert(
+                            "Thank you for your enquiry. We will get back to you soon."
+                        );
+                        document.cookie = "isEnquiryPopupFormSubmitted=true";
+                        $("#applicationModal form")[0].reset();
+                        $("#applicationModal").modal("hide");
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                });
+            }
+        });
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $("#page_course_enquiry_form").submit(function (e) {
+            e.preventDefault();
+            const phoneno = /^[6-9]\d{9}$/;
+            const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+            const phone = $("#id_phone").val();
+            const email = $("#id_email").val();
+            if (!phone.match(phoneno)) {
+                alert("Please enter a valid mobile number");
+            } else if (!emailRegex.test(email)) {
+                alert("Please enter a valid email");
+
+            } else {
+                const formData = new FormData(this);
+                $("#pageEnquiryFormSubmitBtn").prop("disabled", true);
+                $("#pageEnquiryFormSubmitBtn").html('<i class="fa fa-spinner fa-spin"></i>');
+                $.ajax({
+                    url: "{% url 'submit_page_enquiry_form' %}",
+                    type: "POST",
+                    data:
+                    formData,
+                    headers: {
+                        "X-CSRFToken": $('input[name="csrfmiddlewaretoken"]').val(),
+                    },
+                    success: function (data) {
+                        alert(
+                            "Thank you for your enquiry. We will get back to you soon."
+                        );
+                        document.cookie = "isEnquiryPopupFormSubmitted=true";
+                        $("#page_course_enquiry_form")[0].reset();
+                        $("#pageEnquiryFormSubmitBtn").prop("disabled", false);
+                        $("#pageEnquiryFormSubmitBtn").html("Submit");
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                });
+            }
+        });
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#downloadBrochureModalForm").submit(function (e) {
+            e.preventDefault();
+            const name = $("#downloadBrochureName").val();
+            const email = $("#downloadBrochureEmail").val();
+            const phone = $("#downloadBrochurePhone").val();
+            const brocureType = $("#brochureType").val()
+            $("#downloadBrochureModalFormSubmitBtn").prop("disabled", true);
+            $("#downloadBrochureModalFormSubmitBtn").html('<i class="fa fa-spinner fa-spin"></i>');
+            $.ajax({
+                url: "{% url 'submit_application_form' %}",
+                type: "POST",
+                data: JSON.stringify({
+                    "name": name,
+                    "email": email,
+                    "phone": phone,
+                    "course": "download-brochure",
+                    "message": "",
+                }),
+                headers: {
+                    "X-CSRFToken": $('input[name="csrfmiddlewaretoken"]').val(),
+                },
+                success: function (data) {
+                    if (brocureType === "interior") {
+                        // Download Brochure
+                        const aElement = document.createElement("a");
+                        const fileLink = "https://inifdlindsaystreet.net/static/INIFD_LINDSAY_ID_BROCHURE.pdf";
+                        aElement.setAttribute("href", fileLink);
+                        aElement.setAttribute("download", "INIFD_LINDSAY_ID_BROCHURE.pdf");
+                        aElement.click();
+                        URL.revokeObjectURL(fileLink);
+                    } else {
+                        const aElement = document.createElement("a");
+                        const href =
+                            "https://inifdlindsaystreet.net/static/INIFD_LINDSAY_FD_BROCHURE.pdf";
+
+                        aElement.setAttribute("target", "_blank");
+                        aElement.click();
+                        URL.revokeObjectURL(href);
+                    }
+                    document.cookie = "isEnquiryPopupFormSubmitted=true";
+                    $("#downloadBrochureModalForm")[0].reset();
+                    $("#myModal").modal("hide");
+                    $("#downloadBrochureModalFormSubmitBtn").prop("disabled", false);
+                    $("#downloadBrochureModalFormSubmitBtn").html("Submit");
+
+                },
+                cache: false,
+                contentType: false,
+                processData: false,
+            });
+        });
+    });
+</script>
+<script>
+    !function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+            n.callMethod ?
+                n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = '2.0';
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s)
+    }(window, document, 'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '541834826172939');
+    fbq('track', 'PageView');
+</script>
+<noscript>
+    <img height="1" width="1" style="display:none"
+         src="https://www.facebook.com/tr?id=541834826172939&ev=PageView&noscript=1" alt=""/>
+</noscript><!-- End Facebook Pixel Code -->
+<script type='application/ld+json'>
+{
+  "@context": "http://www.schema.org",
+  "@type": "LocalBusiness",
+  "name": "INIFD LINDSAY STREET KOLKATA",
+  "sameAs"   : ["https://www.facebook.com/inifdlindsaystreet", "https://www.instagram.com/inifdlindsayst", "https://business.google.com/edit/l/06222314162863740214"],
+
+  "url": "http://www.inifdkolkata.com",
+  "logo": "{% static 'frontend/images/logo.png' %}",
+  "image": "{% static 'frontend/images/logo.png' %}",
+  "description": "Largest Fashion Design Institute & Interior Design Institute in Kolkata. Best Fashion & Interior Designing Institute in Kolkata ",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "2nd Floor, Humayun Court Building, 20A, Lindsay St, behind Light House Cinema, New Market Area, Dharmatala, Taltala",
+    "addressLocality": "Kolkata",
+    "addressRegion": "West bengal",
+    "postalCode": "700087",
+    "addressCountry": "India"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "22.5597° N",
+    "longitude": "88.3517° E"
+  },
+  "openingHours": "Mo, Tu, We, Th, Fr, Sa 09:30-06:30",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+91 (033) 2217 5401",
+    "contactType": "INIFD KOLKATA LINDSAY STREET"
+  },
+
+  "aggregateRating" : {
+    "@type" : "AggregateRating",
+    "bestRating":"5",
+    "ratingValue":"4.8",
+    "reviewCount":"240","worstRating":"1"
+  }
+
+}
+
+</script>
+<script type="application/javascript" src="{% static 'frontend/js/frontend.js' %}"></script>
+<script>
+    $(document).ready(function () {
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag("js", new Date());
+
+        gtag("config", "UA-83282272-3");
+    })
+</script>

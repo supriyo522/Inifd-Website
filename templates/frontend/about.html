@@ -1,0 +1,167 @@
+{% extends 'frontend/base.html' %}
+{% load static %}
+{% block title %}
+    <title>About us</title>
+{% endblock %}
+
+{% block content %}
+    <style>
+      .about-us {
+    padding: 100px 0 105px;
+    width: 100%;
+    float: left;
+}
+
+.about-us h2 {
+    padding-left: 20px;
+    color: #fff;
+    margin-bottom: 35px;
+    font-size: 20px;
+    font-weight: 100;
+    border-left: 5px solid #ee1d23;
+
+}
+
+.about-us h2 span {
+    color: #444444;
+}
+
+.about-us img {
+    width: 100%;
+    height: auto;
+}
+
+.about-us p {
+    margin: 0 0 12px 0;
+    font-size: 14px;
+    text-align: justify;
+}
+
+.about-us a {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    position: relative;
+    -webkit-transition-property: color;
+    transition-property: color;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+    padding: 8px 20px;
+    margin: 10px 0 0 0;
+    font-size: 14px;
+    color: #2f506c;
+    border: solid 1px #2f506c;
+}
+
+.about-us a:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #6091ba;
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+    -webkit-transform-origin: 0 50%;
+    transform-origin: 0 50%;
+    -webkit-transition-property: transform;
+    transition-property: transform;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+}
+
+.about-us a:hover, .about-us a:focus, .about-us a:active {
+    color: #fff;
+}
+
+.about-us a:hover:before, .about-us a:focus:before, .about-us a:active:before {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+    -webkit-transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
+    transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
+}
+
+.about-video-block a {
+    border: none;
+}
+
+.about-us a:before {
+    background: none;
+}
+
+
+
+    </style>
+    <div class="inner-banner">
+        <div class="container">
+            <div class="col-sm-12">
+                <h2>About Inifd lindsay street</h2>
+            </div>
+            <div class="col-sm-12 inner-breadcrumb">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li>About Inifd lindsay street</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Inner Banner Wrapper End -->
+    <section class="inner-wrapper">
+        <div class="custom-container">
+            <div class="row">
+                <div class="inner-wrapper-main about-edu">
+                    <div class="col-md-8">
+                        <img class="img-responsive"
+                             src="{% static 'frontend/images/inifd-about.jpeg' %}">
+                        <h2>About INIFD LINDSAY STREET</h2>
+                        <p>Inter National Institute of Fashion Design is the World’s Largest Global network
+                            of Design Institutes. INIFD and INIFD Academy of Interiors is the only institute
+                            offering premium programs in the primary design fields of Fashion Design and Interior
+                            Design. INIFD has a global presence. Experiencing the uniqueness of a rich source of
+                            visual inspiration and sharing this experience with our students in over 11 different
+                            countries and 4 continents gives them a unique perspective on the variety of expression
+                            existing throughout the world. Our students and faculty combine curiosity, experimentation
+                            and enthusiasm in the pursuit of learning for over half a million pass-outs and 25000
+                            students passing out every year.</p>
+
+                        <h2>Mission</h2>
+                        <p>Our aim is to take education in fashion and design to the common man in India. We provide
+                            premier educational experience to foster career focus, creativity and most importantly a
+                            global perspective.</p>
+
+                        <h2>To Fulfill our mission we</h2>
+                        <ul class="list-ul">
+                            <li>Develop and nurture students’ intellectual, aesthetic, analytical, and technological
+                                abilities
+                            </li>
+                            <li> Nurture student’s skill by integrating theory and practice</li>
+                            <li>Offer students rigorous and innovative curriculum taught by the distinguished faculties
+                                with academic excellence and industry experience.
+                            </li>
+                            <li>Commit to a broad-based education in the liberal arts</li>
+                            <li>Expose our students to their chosen professions through internships, guest lectures,
+                                industry-sponsored projects and more
+                            </li>
+                            <li>Promote the ultimate student growth and self-development through student support
+                                services, programs, and activities.
+                            </li>
+                            <li>Provide students with a multifaceted educational experience</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+{% endblock %}

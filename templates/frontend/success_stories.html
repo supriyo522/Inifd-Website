@@ -1,0 +1,116 @@
+{% extends 'frontend/base.html' %}
+{% block title %}
+    <title>Students work</title>
+{% endblock %}
+{% block content %}
+    <style>
+        .success-story .shadow-effect {
+            background: #fff;
+            padding: 20px;
+            border-radius: 4px;
+            text-align: center;
+            border: 1px solid #dc1319;
+            box-shadow: 0 19px 100px rgba(220, 19, 25, 0.22), 0 15px 12px rgba(220, 19, 25, 0.08);
+        }
+
+        .success-story .shadow-effect img {
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+            max-width: 90px;
+            margin: 0 auto 17px;
+        }
+
+        .success-story blockquote {
+            text-align: justify;
+            font-size: 15px;
+            color: #777;
+            border-left: none;
+        }
+
+        .success-story .testimonial-name {
+            margin: -22px auto 0;
+            display: table;
+            width: auto;
+            background: #dc1319;
+            padding: 9px 35px;
+            border-radius: 12px;
+            text-align: center;
+            color: #fff;
+            box-shadow: 0 9px 18px rgba(0, 0, 0, 0.12), 0 5px 7px rgba(0, 0, 0, 0.05);
+        }
+
+        .success-story {
+            margin: 10px 0;
+        }
+    </style>
+    <div class="inner-banner">
+        <div class="container">
+            <div class="col-sm-12">
+                <h2>Success Story</h2>
+            </div>
+            <div class="col-sm-12 inner-breadcrumb">
+                <ul>
+                    <li><a href="https://inifdlindsaystreet.net/">Home</a></li>
+                    <li>Pages</li>
+                    <li>Success Story</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Inner Banner Wrapper End -->
+    <!--=======================bodypart========================-->
+    <section class="inner-wrapper">
+        <div class="custom-container">
+            <h2>Success Stories</h2>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="inner-wrapper-main about-edu">
+                        <div class="row">
+                            {% for success_story in stories %}
+                                <div class="col-md-12">
+                                    <div class="success-story">
+                                        <div class="shadow-effect">
+                                            <img class="img-circle" src="{{ success_story.image.url }}" alt="">
+                                            <blockquote>"{{ success_story.description }}"</blockquote>
+                                        </div>
+                                        <div class="testimonial-name">{{ success_story.title }}</div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <form method="post" id="page_course_enquiry_form">
+                        {% csrf_token %}
+                        <h3>Course Enquiry</h3>
+                        <fieldset>
+                            {{ form.name }}
+                        </fieldset>
+                        <fieldset style="color: black;">
+                            {{ form.email }}
+                        </fieldset>
+                        <fieldset>
+                            {{ form.phone }}
+                        </fieldset>
+                        {{ form.course }}
+                        <fieldset>
+                            {{ form.message }}
+                        </fieldset>
+                        <fieldset>
+                            <button id="course_inquiry_form_btn" name="submit" type="submit" data-submit="...Sending">
+                                Submit
+                            </button>
+                        </fieldset>
+                    </form>
+                    <div style="margin-top:15px">
+                        <iframe style="border: 2px solid #fff;" width="100%" height="300"
+                                src="https://www.youtube.com/embed/p5VIv8yWWNk" frameborder="0"
+                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

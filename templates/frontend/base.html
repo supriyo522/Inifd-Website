@@ -1,0 +1,135 @@
+{% load static %}<!DOCTYPE html>
+<html lang="en">
+{% include 'frontend/layout/head.html' %} {% block title %} {% endblock %}
+<!-- Google Tag Manager (noscript) -->
+<noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T9V3ZGC" height="0" width="0"
+            style="display: none; visibility: hidden"></iframe>
+</noscript>
+<body>
+<div id="page">
+    {% include 'frontend/layout/header.html' %}
+    {% block content %} {% endblock %}
+    {% include 'frontend/layout/footer.html' %}
+    <!-- Download Brochure Modal -->
+    <div id="applicationModal" class="modal fade download-bro-modal" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content modal-style">
+                <div class="modal-header modal-bg-color">
+                    <h4 class="modal-title">INIFD LINDSAY STREET ONLINE ADMISSION</h4>
+                    <button type="button" class="close" data-bs-dismiss="modal">
+                        &times;
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" id="courseApplicationModalForm">
+                        {% csrf_token %}
+                        <input type="text" id="applicationName" placeholder="Your name.." required/>
+                        <input type="text" id="applicationEmail" placeholder="Your Email Address" required/>
+                        <input type="text" id="applicationPhone" placeholder="Your Phone" required/>
+                        <select class="selectpicker" data-show-subtext="true" id="applicationCourse"
+                                data-live-search="true" required>
+                            <option data-subtext="Rep California" value="">
+                                Select Course
+                            </option>
+                            <option data-subtext="Sen Interior" value="Interior Design">
+                                Interior Design
+                            </option>
+                            <option data-subtext="Sen Fashion" value="Fashion Design">
+                                Fashion Design
+                            </option>
+                        </select>
+                        <fieldset class="text-area">
+                        <textarea placeholder="Type your message here...." id="applicationMessage" tabindex="5"
+                                  required></textarea>
+                        </fieldset>
+                        <button id="applicationModalSubmitBtn" name="submit" type="submit" data-submit="...Sending">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Download Brochure Modal -->
+    <div id="leadModal" class="modal fade download-bro-modal" data-bs-backdrop="static" data-keyboard="false"
+         role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content modal-style">
+                <div class="modal-header modal-bg-color text-center">
+                    <h4 class="modal-title ">INIFDLINDSAYSTREET </h4>
+                </div>
+                <div class="modal-body">
+                    <form method="post" id="LeadModalForm">
+                        {% csrf_token %}
+                        <input type="text" id="leadName" name="name" placeholder="Your name.." required/>
+                        <input type="text" id="leadPhone" name="phone" placeholder="Your Phone" required/>
+                        <button id="leadModalSubmitBtn" name="submit" type="submit" data-submit="...Sending">
+                            Proceed
+                        </button>
+                    </form>
+                    <form style="display: none" method="post" id="enqOtpVForm">
+                        {% csrf_token %}
+                        <h5 class="text-center">Enter OTP sent to mobile number <strong id="eValidMobile"></strong></h5>
+                        <input id="eValidMobileInput" type="hidden" name="mobile">
+                        <input type="text" id="enqOtpVFormInput" name="otp" placeholder="Enter OTP" required/>
+                        <button id="enqOtpVBtn" name="submit" type="submit" data-submit="...Sending">
+                            Verify
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Download Brochure Modal -->
+    <div id="myModal" class="modal fade download-bro-modal" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content modal-style">
+                <div class="modal-header modal-bg-color">
+                    <h4 class="modal-title">Your Details</h4>
+                    <button type="button" class="close" data-bs-dismiss="modal">
+                        &times;
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="" method="post" id="downloadBrochureModalForm">
+                        {% csrf_token %}
+                        <input type="text" id="downloadBrochureName" placeholder="Your name.." required/>
+                        <input type="text" id="downloadBrochureEmail" placeholder="Your Email Address" required/>
+                        <input type="text" id="downloadBrochurePhone" placeholder="Your Phone" required/>
+                        <button name="submit" type="submit" id="downloadBrochureModalFormSubmitBtn"
+                                data-submit="...Sending">
+                            Submit
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Download Brochure Modal -->
+    {% include 'frontend/layout/scripts.html' %}
+    <script>
+        const bLazy = new Blazy({
+            breakpoints: [{
+                width: 420 // Max-width
+                , src: 'data-src-small'
+            }]
+            , success: function (element) {
+                setTimeout(function () {
+                    const parent = element.parentNode;
+                    parent.className = parent.className.replace(/\bloading\b/, '');
+                }, 200);
+            }
+        });
+
+    </script>
+</div>
+
+{% block script %}
+
+{% endblock %}
+</body>
+</html>

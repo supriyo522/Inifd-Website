@@ -1,0 +1,137 @@
+{% extends 'backend/layout/base.html' %} {% block title %}
+    <title>Add testimonial</title>
+{% endblock %} {% block content %}
+    <main class="page-content">
+        <!--breadcrumb-->
+        <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+            <div class="breadcrumb-title pe-3">Testimonials</div>
+            <div class="ps-3">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-0 p-0">
+                        <li class="breadcrumb-item">
+                            <a href="javascript:"><i class="bx bx-home-alt"></i></a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">Add testimonial</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="ms-auto">
+                <div class="btn-group">
+                    <a
+                            href="{% url 'backend_testimonials' %}"
+                            type="button"
+                            class="btn btn-outline-dark">Back</a
+                    >
+                </div>
+            </div>
+        </div>
+        <!--end breadcrumb-->
+        {% for message in messages %}
+            <div
+                    class="alert alert-{{ message.tags }} alert-dismissible fade show text-center"
+                    role="alert"
+            >
+                {{ message.message }}
+            </div>
+        {% endfor %}
+        <h6 class="mb-0 text-uppercase">Add testimonial form</h6>
+        <hr />
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <form action="" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ form.media }}
+                            <div class="row row-cols-2">
+                                <div class="col col-7">
+                                    <div class="row mb-3">
+                                        <label
+                                                for="inputEnterYourName"
+                                                class="col-sm-3 col-md-2 col-form-label"
+                                        >Name</label
+                                        >
+                                        <div class="col-sm-9">{{ form.title }}</div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label
+                                                for="inputEnterYourName"
+                                                class="col-sm-3 col-md-2 col-form-label"
+                                        >Comment</label
+                                        >
+                                        <div class="col-sm-9">{{ form.description }}</div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label
+                                                for="inputEnterYourName"
+                                                class="col-sm-3 col-md-2 col-form-label"
+                                        >Profile image</label
+                                        >
+                                        <div class="col-sm-9">{{ form.image }}</div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label
+                                                for="inputEnterYourName"
+                                                class="col-sm-3 col-md-2 col-form-label"
+                                        >Year</label
+                                        >
+                                        <div class="col-sm-9">{{ form.year }}</div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label
+                                                for="inputEnterYourName"
+                                                class="col-sm-3 col-md-2 col-form-label"
+                                        >Course</label>
+                                        <div class="col-sm-9">{{ form.course_type }}</div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label
+                                                for="inputEnterYourName"
+                                                class="col-sm-3 col-md-2 col-form-label"
+                                        >Show on homepage</label
+                                        >
+                                        <div class="col-sm-9">{{ form.show_at_home }}</div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label
+                                                for="inputEnterYourName"
+                                                class="col-sm-3 col-md-2 col-form-label"
+                                        >Is active</label
+                                        >
+                                        <div class="col-sm-9">{{ form.is_active }}</div>
+                                    </div>
+                                </div>
+                                <div class="col col-5">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <img id="file-ip-1-preview"
+                                                 src="{{ banner.image }}"
+                                                 alt="{{ banner.title }}"
+                                                 class="img-fluid"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script type="text/javascript">
+        function showPreview(event) {
+            if (event.target.files.length > 0) {
+                var src = URL.createObjectURL(event.target.files[0]);
+                var preview = document.getElementById("file-ip-1-preview");
+                preview.src = src;
+                preview.style.display = "block";
+            }
+        }
+    </script>
+
+{% endblock %}

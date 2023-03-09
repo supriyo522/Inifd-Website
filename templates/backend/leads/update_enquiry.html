@@ -1,0 +1,161 @@
+{% extends 'backend/layout/base.html' %}
+
+{% block title %}
+    <title> Leads Enquiry Details</title> {% endblock %}
+{% block content %}
+    <main class="page-content">
+        <!--breadcrumb-->
+        <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+            <div class="breadcrumb-title pe-3">Leads & Enquiries</div>
+            <div class="ps-3">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-0 p-0">
+                        <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">Lead details</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="ms-auto">
+                <div class="btn-group">
+                    <a href="{% url 'backend_leads_enquiry' %}" type="button" class="btn btn-outline-dark">
+                        <i class="bx bx-arrow-back fa-sm"></i>
+                        Back</a>
+                </div>
+            </div>
+        </div>
+        <!--end breadcrumb-->
+        
+        <div class="card">
+            <div class="card-header py-3">
+                <div class="row g-3 align-items-center">
+                    <div class="col-12 col-lg-4 col-md-6 me-auto">
+                        <h5 class="mb-1">{{ enquiry.created_at|date:"j-b-Y G:i a" }}</h5>
+                        <p class="mb-0">Enquiry ID : #{{ enquiry.pk }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row row-cols-1 row-cols-xl-2 row-cols-xxl-3">
+                    <div class="col">
+                        <div class="card border shadow-none radius-10">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="icon-box bg-light-success border-0">
+                                        <i class="bi bi-person text-success"></i>
+                                    </div>
+                                    <div class="info">
+                                        <h6 class="mb-2">Name : {{ enquiry.name }}</h6>
+                                        <p class="mb-1">Email : {{ enquiry.email }}</p>
+                                        <p class="mb-1">Contact : {{ enquiry.phone }}</p>
+                                        <p class="mb-1">IP : {{ enquiry.ip_address }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card border shadow-none radius-10">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="icon-box bg-light-warning border-0">
+                                        <i class="bi bi-geo-alt text-warning"></i>
+                                    </div>
+                                    <div class="info">
+                                        <h6 class="mb-2">Location <span>(by ip)</span></h6>
+                                        <p class="mb-1"><strong>Address</strong> : {{ enquiry.data.city }}</p>
+                                        <p class="mb-1"><strong>City</strong> : {{ enquiry.data.city }}</p>
+                                        <p class="mb-1"><strong>State</strong> : {{ enquiry.data.regionName }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card border shadow-none radius-10">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="icon-box bg-light-danger border-0">
+                                        <i class="bx bx-message text-danger"></i>
+                                    </div>
+                                    <div class="info">
+                                        <h6 class="mb-2">Message</h6>
+                                        <p class="mb-1">{{ enquiry.message }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!--end row-->
+                <div class="card">
+                    <header class="card-header bg-light">
+                        <h6 class="text-left text-muted font-weight-bold">
+                            Update Enquiry
+                        </h6>
+                    </header>
+                    <form method="post" action="">
+                        {% csrf_token %}
+                        <div class="card-body mb-3">
+                            <div class="col-12 col-lg-4 col-6 col-md-3 mb-3">
+                                <label> Status : </label>
+                                <select class="form-select" name="status" required>
+                                    <option hidden="" disabled="disabled" selected="selected" value=""> Change Status
+                                    </option>
+                                    <option value="Pending">Pending</option>
+                                    <option value="Contacted">Contacted</option>
+                                    <option value="Not interested">Not Interested</option>
+                                    <option value="Interested">Interested</option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-lg-4 col-6 col-md-3">
+                                <label> Remarks : </label>
+                                <textarea class="form-control" rows="3" name="remark" required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary mt-3 text-center">Update</button>
+                        </div>
+                    </form>
+                    
+                    <header class="header bg-light">
+                        <h6 class="text-left text-muted font-weight-bold">
+                            Previous updates
+                        </h6>
+                    </header>
+                    <div class="row">
+                        <div class="col-12 ">
+                            <div class="card border shadow-none radius-10">
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table align-middle mb-0">
+                                            <thead class="table-light">
+                                            <tr>
+                                                <th>Remarks</th>
+                                                <th>Updated at</th>
+                                                <th>Updated by</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% for status in enquiry.enquirystatus_set.all %}
+                                                <tr>
+                                                    <td>
+                                                        <div class="orderlist">
+                                                            <div>
+                                                                <P class="mb-0 product-title">{{ status.remarks }}</P>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>{{ status.updated_at|date:"j-m-y G:i" }}</td>
+                                                    <td>{{ status.updated_by.first_name }}</td>
+                                                </tr>
+                                            {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!--end row-->
+                </div>
+            </div>
+    </main>
+{% endblock %}

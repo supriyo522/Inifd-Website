@@ -1,0 +1,127 @@
+{% extends 'backend/layout/base.html' %}
+{% block title %}
+    <title>Testimonials</title>
+{% endblock %}
+{% block content %}
+    <style>
+        .item-box:hover .item-container {
+            transform: scale(1.1);
+            -webkit-transform: scale(1.1);
+            transition: all 2s cubic-bezier(0.23, 1, 0.32, 1) 0s;
+            width: 50px;
+        }
+
+        .img-holder {
+            width: 50px;
+            height: 50px;
+            overflow: hidden;
+        }
+
+        .image-gallery-box {
+            -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .33);
+            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, 0.33);
+            padding: 5px;
+        }
+
+        .image-gallery-box img {
+            width: 50px;
+        }
+    </style>
+    <main class="page-content">
+        <!--breadcrumb-->
+        <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+            <div class="breadcrumb-title pe-3">Dashboard</div>
+            <div class="ps-3">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-0 p-0">
+                        <li class="breadcrumb-item"><a href="javascript:"><i class="bx bx-home-alt"></i></a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">Testimonials</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="ms-auto">
+                <div class="btn-group">
+                    <a href="{% url 'backend_add_testimonial' %}" type="button" class="btn btn-primary">Add
+                        Testimonial</a>
+                </div>
+            </div>
+        </div>
+        <!--end breadcrumb-->
+        {% for message in messages %}
+            <div class="alert alert-{% if message.tags == "error" %}danger {% else %}success {% endif %} alert-dismissible fade show text-center"
+                 role="alert">
+                {{ message.message }}
+            </div>
+        {% endfor %}
+        <h6 class="mb-0 text-uppercase">Mentors</h6>
+        <hr>
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive table-bordered">
+                    <table id="leadsTable" class="table table-striped table-bordered">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Comment</th>
+                            <th>Profile Image</th>
+                            <th>Year</th>
+                            <th>Course</th>
+                            <th>Shot on homepage</th>
+                            <th>Is active</th>
+                            <th>Created at</th>
+                            <th>Created by</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for testimonial in testimonials %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ testimonial.title }}</td>
+                                <td>{{ testimonial.description|truncatechars:100 }}</td>
+                                <td>
+                                    <div class="image-gallery-box">
+                                        <div class="img-holder">
+                                            <a class="example-image-link"
+                                               href="{{ testimonial.image.url }}"
+                                               data-lightbox="example-1">
+                                                <img class="mentor.profile_image.url"
+                                                     src="{{ testimonial.image.url }}"
+                                                     alt="image-1"/></a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>{{ testimonial.year }}</td>
+                                <td>{{ testimonial.get_course_type_display }}</td>
+                                <td>{{ testimonial.show_at_home }}</td>
+                                <td>{{ testimonial.is_active }}</td>
+                                <td>{{ testimonial.created_at|date:"j-m-y G:i" }}</td>
+                                <td>{{ testimonial.created_by }}</td>
+                                <td>
+                                    <a href="{% url 'backend_update_testimonial' testimonial.id %}"
+                                       class="btn btn-warning btn-sm">Update</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <script>
+        $(document).ready(function () {
+            var table = $('#leadsTable').DataTable({
+                lengthChange: false,
+                buttons: ['copy', 'excel', 'pdf', 'print']
+            });
+
+            table.buttons().container()
+                .appendTo('#leadsTable_wrapper .col-md-6:eq(0)');
+        });
+    </script>
+
+{% endblock %}

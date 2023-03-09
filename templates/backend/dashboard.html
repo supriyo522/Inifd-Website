@@ -1,0 +1,307 @@
+{% extends 'backend/layout/base.html' %}
+
+{% block title %}
+    <title>Dashboard
+    </title>
+
+{% endblock %}
+
+{% block content %}
+    <main class="page-content">
+
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-2 row-cols-xl-4">
+            <div class="col">
+                <div class="card radius-10">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div>
+                                <p class="mb-0 text-secondary">Total Enquiries</p>
+                                <h4 class="my-1">{{ total_enquiries }}</h4>
+                                <p class="mb-0 font-13 text-success"><i class="bi bi-caret-up-fill"></i> 5% from last
+                                    week</p>
+                            </div>
+                            <div class="widget-icon-large bg-gradient-purple text-white ms-auto"><i
+                                    class="bi bi-basket2-fill"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card radius-10">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div>
+                                <p class="mb-0 text-secondary">Total Visits</p>
+                                <h4 class="my-1">10,991</h4>
+                                <p class="mb-0 font-13 text-success"><i class="bi bi-caret-up-fill"></i> 4.6 from last
+                                    week</p>
+                            </div>
+                            <div class="widget-icon-large bg-gradient-success text-white ms-auto"><i
+                                    class="bi bi-currency-exchange"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card radius-10">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div>
+                                <p class="mb-0 text-secondary">To Update</p>
+                                <h4 class="my-1">5.8K</h4>
+                                <p class="mb-0 font-13 text-danger"><i class="bi bi-caret-down-fill"></i> 2.7 from last
+                                    week</p>
+                            </div>
+                            <div class="widget-icon-large bg-gradient-danger text-white ms-auto"><i
+                                    class="bi bi-people-fill"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card radius-10">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div>
+                                <p class="mb-0 text-secondary">To update</p>
+                                <h4 class="my-1">38.15%</h4>
+                                <p class="mb-0 font-13 text-success"><i class="bi bi-caret-up-fill"></i> 12.2% from last
+                                    week</p>
+                            </div>
+                            <div class="widget-icon-large bg-gradient-info text-white ms-auto"><i
+                                    class="bi bi-bar-chart-line-fill"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--end row-->
+
+
+        <div class="row">
+            <div class="col-12 col-lg-8 col-xl-8 d-flex">
+                <div class="card radius-10 w-100">
+                    <div class="card-body">
+                        <div class="row row-cols-1 row-cols-lg-2 g-3 align-items-center">
+                            <div class="col">
+                                <h5 class="mb-0">Visits </h5>
+                            </div>
+                            <div class="col">
+                                <div class="d-flex align-items-center justify-content-sm-end gap-3 cursor-pointer">
+                                    <div class="font-13"><i class="bi bi-circle-fill text-primary"></i><span
+                                            class="ms-2">Sales</span></div>
+                                    <div class="font-13"><i class="bi bi-circle-fill text-success"></i><span
+                                            class="ms-2">Orders</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="chart1"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-4 col-xl-4 d-flex">
+                <div class="card radius-10 w-100">
+                    <div class="card-header bg-transparent">
+                        <div class="row g-3 align-items-center">
+                            <div class="col">
+                                <h5 class="mb-0">Enquiry Statistics</h5>
+                            </div>
+                            <div class="col">
+                                <div class="d-flex align-items-center justify-content-end gap-3 cursor-pointer">
+                                    <div class="dropdown">
+                                        <a class="dropdown-toggle dropdown-toggle-nocaret" href="#"
+                                           data-bs-toggle="dropdown" aria-expanded="false"><i
+                                                class="bx bx-dots-horizontal-rounded font-22 text-option"></i>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="javascript:;">Action</a>
+                                            </li>
+                                            <li><a class="dropdown-item" href="javascript:;">Another action</a>
+                                            </li>
+                                            <li>
+                                                <hr class="dropdown-divider">
+                                            </li>
+                                            <li><a class="dropdown-item" href="javascript:;">Something else here</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div id="chart2"></div>
+                    </div>
+                    <ul class="list-group list-group-flush mb-0">
+                        <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent">New
+                            Enquiries<span class="badge bg-primary badge-pill">25%</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent">
+                            Contacted<span class="badge bg-orange badge-pill">65%</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent">
+                            Pending<span class="badge bg-success badge-pill">10%</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div><!--end row-->
+
+
+
+
+        <div class="card radius-10">
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-12 col-lg-4 col-xl-4 d-flex">
+                        <div class="card mb-0 radius-10 border shadow-none w-100">
+                            <div class="card-body">
+                                <h5 class="card-title">Top Visit Locations</h5>
+                                <h4 class="mt-4">10,651 <i class="flag-icon flag-icon-us rounded"></i></h4>
+                                <p class="mb-0 text-secondary font-13">Our Most Customers in INDIA</p>
+                                <ul class="list-group list-group-flush mt-3">
+                                    <li class="list-group-item border-top">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <div><i class="flag-icon flag-icon-us"></i></div>
+                                            <div>India</div>
+                                            <div class="ms-auto">10000</div>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <div><i class="flag-icon flag-icon-au"></i></div>
+                                            <div>Malaysia</div>
+                                            <div class="ms-auto">10</div>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <div><i class="flag-icon flag-icon-in"></i></div>
+                                            <div>India</div>
+                                            <div class="ms-auto">354</div>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <div><i class="flag-icon flag-icon-ca"></i></div>
+                                            <div>Indonesia</div>
+                                            <div class="ms-auto">20</div>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <div><i class="flag-icon flag-icon-ad"></i></div>
+                                            <div>Turkey</div>
+                                            <div class="ms-auto">10</div>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <div><i class="flag-icon flag-icon-cu"></i></div>
+                                            <div>Netherlands</div>
+                                            <div class="ms-auto">10</div>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <div><i class="flag-icon flag-icon-is"></i></div>
+                                            <div>Italy</div>
+                                            <div class="ms-auto">23</div>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <div><i class="flag-icon flag-icon-ge"></i></div>
+                                            <div>Canada</div>
+                                            <div class="ms-auto">01</div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-8 col-xl-8 d-flex">
+                        <div class="card mb-0 radius-10 border shadow-none w-100">
+                            <div class="card-body">
+                                <div class="" id="geographic-map"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!--end row-->
+            </div>
+        </div>
+
+        <div class="card radius-10">
+            <div class="card-header bg-transparent">
+                <div class="row g-3 align-items-center">
+                    <div class="col">
+                        <h5 class="mb-0">Recent Enquiries</h5>
+                    </div>
+                    <div class="col">
+                        <div class="d-flex align-items-center justify-content-end gap-3 cursor-pointer">
+                            <div class="dropdown">
+                                <a  href="{% url 'backend_leads_enquiry' %}"
+                                   aria-expanded="false"> View all
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table align-middle mb-0">
+                        <thead class="table-light">
+
+                        <tr>
+                            <th>#ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Course</th>
+                            <th>Date</th>
+                            <th>Status</th>
+{#                            <th>Actions</th>#}
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {%  for r_e in recent_enquiries %}
+                        <tr>
+                            <td>#{{ forloop.counter }}</td>
+                            <td>
+                                {{ r_e.name }}
+                            </td>
+                            <td>{{ r_e.email }}</td>
+                            <td>{{r_e.phone}}</td>
+                            <td>{{ r_e.created_at }}</td>
+                            <td>{{ r_e.course }}</td>
+                            <td>{{ r_e.status }}</td>
+{#                            <td>#}
+{#                                <div class="d-flex align-items-center gap-3 fs-6">#}
+{#                                    <a href="javascript:;" class="text-primary" data-bs-toggle="tooltip"#}
+{#                                       data-bs-placement="bottom" title="" data-bs-original-title="View detail"#}
+{#                                       aria-label="Views"><i class="bi bi-eye-fill"></i></a>#}
+{#                                    <a href="javascript:;" class="text-warning" data-bs-toggle="tooltip"#}
+{#                                       data-bs-placement="bottom" title="" data-bs-original-title="Edit info"#}
+{#                                       aria-label="Edit"><i class="bi bi-pencil-fill"></i></a>#}
+{#                                    <a href="javascript:;" class="text-danger" data-bs-toggle="tooltip"#}
+{#                                       data-bs-placement="bottom" title="" data-bs-original-title="Delete"#}
+{#                                       aria-label="Delete"><i class="bi bi-trash-fill"></i></a>#}
+{#                                </div>#}
+{#                            </td>#}
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+    </main>
+
+
+{% endblock %}

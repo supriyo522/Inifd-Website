@@ -1,0 +1,212 @@
+{% extends 'frontend/base.html' %}{% load static %}
+{% block title %} <title>Fashion design course</title>{% endblock %}
+{% block content %}
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+	      integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+	      crossorigin="anonymous" referrerpolicy="no-referrer"/>
+	<link rel="stylesheet" href="{% static 'frontend/css/couse_details.css' %}"/>
+	<section class="inner-wrapper " style="padding-bottom: 0px">
+		<div class="bg-colo">
+			<div class="custom-container bg-whi">
+				<div>
+					<div class="row">
+						<div class="col-md-8 design-institute">
+							<img src="{% static 'frontend/images/career-bg.png' %}" class="img-fluid" alt=""/>
+							<h5>
+								Fashion is not all about labels and brands. It is something deep within you </h5>
+						</div>
+						<div class="col-md-4">
+							<form method="post" class="form-enquiry">
+								<h3>Course Enquiry</h3>
+								<fieldset>
+									<input type="text" name="" placeholder="Enter your name" required/>
+								</fieldset>
+								<fieldset>
+									<input type="email" name="" placeholder="Enter your email" required/>
+								</fieldset>
+								<fieldset>
+									<input type="tel" name="" placeholder="Enter your phone"/>
+								</fieldset>
+								<select name="" required>
+									<option value="">----------</option>
+									<option value="id">Interior Design</option>
+									<option value="fd">Fashion Design</option>
+								</select>
+								<fieldset>
+									<textarea name="" cols="" rows="3" placeholder="Enter your message"></textarea>
+								</fieldset>
+								<fieldset>
+									<button name="submit" type="submit" data-submit="...Sending">
+										Submit
+									</button>
+								</fieldset>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="inner_interior_page">
+			<div class="custom-container">
+				<div class="row">
+					<div class="col-md-8">
+						<div class="innovative">
+							<h6>
+								Fashion designing - the most innovative, interesting and creative career option demamds
+								your eye for detail. Yes, it's glamorous too. The fashion industry has become highly
+								competitive today with a number of career options ranging from designers to
+								merchandisers, from stylist to fashion blogger and more.</h6>
+							<h6>
+								INIFD Academy of fashion program in fashion design comes from
+								the house of INIFD-- the leader in professional education with
+								more than 23 years of proven track record in the domain of
+								fashion and interior design and one of the best interior design
+								college in kilkata </h6>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div style="margin-top: 15px;">
+							<iframe style="border: 2px solid #fff;" width="100%" height="300px"
+							        src="https://www.youtube.com/embed/p5VIv8yWWNk" frameborder="0"
+							        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+							        allowfullscreen></iframe>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="custom-container pt-3 pb-4">
+				<div class="row">
+					<div class="col-md-12 text-gradient">
+						<h1>Fashion</h1>
+						<h3 class="design-ab">design <span>courses</span></h3>
+					</div>
+				</div>
+			</div>
+			<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+			<div class="tr-job-posted section-padding mt-2">
+				<div class="custom-container">
+					<div class="job-tab text-center">
+						<ul class="nav nav-tabs justify-content-center" role="tablist">
+							{% for course in courses %}
+								<li role="presentation" class="active">
+									<a href="#c{{ course.id }}" {% if forloop.counter0 == 0 %} class="active show"
+									   aria-selected="true"  {% endif %} aria-controls="bdes-fashion" role="tab"
+									   data-bs-toggle="tab">{{ course.name }}</a>
+								</li>
+							{% endfor %}
+						</ul>
+						<div class="row">
+							<div class="tab-content text-right">
+								{% for course in courses %}
+									<div role="tabpanel"
+									     class="tab-pane fade {% if forloop.counter0 == 0 %} active show {% endif %} text-center"
+									     id="c{{ course.id }}">
+										<div class="row">
+											<div class="col-12">
+												<h6 class="text-white">
+													{{ course.description }}
+												</h6>
+											</div>
+										</div><!-- /.row -->
+									</div><!-- /.tab-pane -->
+								{% endfor %}
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12 d-flex pb-3">
+								<h3 class="text-white">Career Options</h3>
+							</div>
+						</div>
+						<div class="text-left">
+							<div>
+								<div class="row">
+									{% for co in career_options|slice:"4:" %}
+									<div class="col-md-6 col-lg-3">
+										<div class="job-item">
+											<div class="job-info">
+                                                <span class="tr-title">
+                                                   Fashion Designer -
+									            </span>
+												<ul class="tr-list job-meta">
+													<li>
+                                                        <span>
+                                                        Fashion designers sketch designs of clothing, footwear, and
+                                                        accessories. They create original clothing, accessories, and
+                                                        footwear. Fashion Designer sketch designs, select fabrics and
+                                                        patterns, and give instructions on how to make the products
+                                                        </span>
+													</li>
+												</ul>
+											</div>
+										</div>
+									</div>
+									{% endfor %}
+								</div><!-- /.row -->
+							</div><!-- /.tab-pane -->
+						</div>
+					</div><!-- /.job-tab -->
+				</div><!-- /.container -->
+			</div>
+			<div class="custom-container">
+				<div class="row collapse" id="collapseExample">
+					<div class="text-left">
+						<div>
+							<div class="row">
+								{% for co in career_options|slice:":4" %}
+								<div class="col-md-6 col-lg-3">
+									<div class="job-item">
+										<div class="job-info">
+                                                <span class="tr-title">
+                                                    Freelance Design for Fashion Brands Fashion Stylist –
+									            </span>
+											<ul class="tr-list job-meta">
+												<li>
+                                                        <span>
+                                                        A freelance fashion designer is a professional who specializes in conceptualizing, drawing and constructing custom garments for customers or brands. They may work independently on personal projects or creating pieces for sale.
+ It's also common for freelance fashion designers to work on a contract basis for companies or brands.
+
+                                                        </span>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								{% endfor %}
+							</div><!-- /.row -->
+						</div><!-- /.tab-pane -->
+					</div>
+				</div>
+				<div class="row mb-2">
+					<div class="col-md-12 text-center">
+						<button data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
+						        aria-controls="collapseExample" class="btn btn-primary"
+						        onclick="this.innerText=this.innerText==='Show More'?'Show Less':'Show More'"
+						>
+							Show More
+						</button>
+					</div>
+				</div>
+			</div>
+			<div class="container mt-4">
+				<div class="brochure">
+					<div class="row">
+						<div class="col-md-12 text-center">
+							<fieldset hidden>
+								<input type="text" id="brochureType" value="fashion" hidden>
+							</fieldset>
+							<h4>Get the Brochure
+								in your
+								<a data-bs-target="#myModal" data-bs-toggle="modal" href="#" title="Email">
+									<i class="fa fa-envelope-o fa-lg" aria-hidden="true" style="color: #dc1319"></i>
+								</a> or
+								<a data-bs-target="#myModal" data-bs-toggle="modal" href="#" title="whatsapp">
+									<i class="fa fa-whatsapp fa-lg" aria-hidden="true" style="color: forestgreen"></i>
+								</a>
+							</h4>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}

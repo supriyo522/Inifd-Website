@@ -1,0 +1,155 @@
+{% extends 'frontend/base.html' %}{% load static %}
+{% block title %} <title>Download Brochure</title> {% endblock %}
+{% block content %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+          integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <style>
+        .brochure-img {
+            -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .12);
+            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .12);
+            padding: 5px;
+        }
+
+        .downlod-box {
+            position: relative;
+            margin-top: 20px;
+            margin-bottom: 26px;
+        }
+
+        .downlod-box .downlod-inner {
+            position: relative;
+            padding: 15px 25px;
+            display: block;
+            background-color: #112640;
+        }
+
+        .downlod-box .downlod-inner .overlay-link {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            right: 0px;
+            bottom: 0px;
+            z-index: 1;
+            display: block;
+        }
+
+        .downlod-box .downlod-inner .content {
+            position: relative;
+            text-align: left;
+            padding-left: 85px;
+        }
+
+        .downlod-box .downlod-inner .content .icon {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            color: #ffffff;
+            font-size: 40px;
+            line-height: 1em;
+            padding-right: 20px;
+            border-right: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .downlod-box .downlod-inner .content h3 {
+            position: relative;
+            font-family: "Playfair Display", serif;
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 1.3em;
+        }
+
+        .downlod-box .downlod-inner .content .file {
+            position: relative;
+            color: #999fb9;
+            font-size: 15px;
+            font-weight: 400;
+            line-height: 1.3em;
+            margin-top: 5px;
+        }
+    </style>
+    <div class="inner-banner">
+        <div class="container">
+            <div class="col-sm-12">
+                <h2>Brochure Download</h2>
+            </div>
+            <div class="col-sm-12 inner-breadcrumb">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li>Pages</li>
+                    <li>Brochure Download</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Inner Banner Wrapper End -->
+    <!--=======================bodypart========================-->
+
+    <section class="inner-wrapper">
+        <div class="custom-container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="inner-wrapper-main about-edu">
+                        <div class="row">
+                            <div class="col-md-6 col-md-offset-3" style="margin-left: 25%">
+                                <h2 class="mt-0">Download Brochure</h2>
+                                <div class="brochure-img">
+                                    <div class="img-holder2">
+                                        <img class="img-responsive" style="width:100%"
+                                             src="{% static 'frontend/images/brochure1-150x150.jpg' %}">
+                                    </div>
+                                </div>
+                                <!-- <button type="button" class="btn btn-info btn-lg d-boton" data-toggle="modal" data-target="#myModal"><i class="fa fa-download"></i> Download Brochure</button>  -->
+                                <div class="downlod-box">
+                                    <div class="downlod-inner">
+                                        <a href="#" class="overlay-link" data-bs-toggle="modal" data-bs-target="#myModal"></a>
+                                        <div class="content">
+                                            <div class="icon fa fa-thin fa-file-arrow-down text-white"></div>
+                                            <h3>Download Brochure</h3>
+                                            <div class="file">Download PDF</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <form method="post" id="page_course_enquiry_form">
+                        {% csrf_token %}
+                        <h3>Course Enquiry</h3>
+                        <fieldset hidden>
+                            <input type="text" id="brochureType" value="interior" hidden>
+                        </fieldset>
+                        <fieldset>
+                            {{ form.name }}
+                        </fieldset>
+                        <fieldset style="color: black;">
+                            {{ form.email }}
+                        </fieldset>
+                        <fieldset>
+                            {{ form.phone }}
+                        </fieldset>
+                        {{ form.course }}
+                        <fieldset>
+                            {{ form.message }}
+                        </fieldset>
+                        <fieldset>
+                            <button id="course_inquiry_form_btn" name="submit" type="submit" data-submit="...Sending">
+                                Submit
+                            </button>
+                        </fieldset>
+                    </form>
+                    <div style="margin-top:15px">
+                        <iframe style="border: 2px solid #fff;" width="100%" height="300"
+                                src="https://www.youtube.com/embed/p5VIv8yWWNk" frameborder="0"
+                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

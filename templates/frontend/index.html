@@ -1,0 +1,698 @@
+{% extends 'frontend/base.html' %}{% load static %}
+{% block title %}
+    <title>INIFD LINDSAY STREET - INIFD KOLKATA | Fashion and Interior Design Institute in Kolkata</title>
+{% endblock %}
+{% block content %}
+    <div class="home_page index-body">
+        <div class="container">
+            <div class="row g-0">
+                <div class="col-sm-12">
+                    <div class="main-banner-slider">
+                        {% for banner in main_banners %}
+                            <div class="">
+                                <img src="{{ banner.image.url }}"
+                                     class="d-block w-100 " alt="..." loading="lazy" />
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="social-links text-gradient">
+                <div class="row">
+                    <div class="col-md-3 d-flex align-items-center justify-content-center justify-content-md-start">
+                        <h2>Designing is fun..</h2>
+                    </div>
+                    <div class="col-md-5 d-flex align-items-center justify-content-center justify-content-md-start py-2">
+                        <h5>To explore more connect with us</h5>
+                    </div>
+                    <div class="col-md-4 d-flex flex-wrap align-items-center justify-content-center justify-content-md-start">
+                        <ul class="d-flex flex-wrap">
+                            <li>
+                                <a target="_blank" href="{{ website_setting.facebook }}"><i class="fa fa-facebook"></i></a>
+                            </li>
+                            <li>
+                                <a target="_blank" href="{{ website_setting.instagram }}"><i
+                                        class="fa fa-instagram"></i></a>
+                            </li>
+                            <li>
+                                <a target="_blank" href="{{ website_setting.whatsapp }}"><i class="fa fa-whatsapp"></i></a>
+                            </li>
+                            <li>
+                                <a target="_blank" href="{{ website_setting.youtube }}"><i
+                                        class="fa fa-youtube-play"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="meet">
+                <div class="row">
+                    <div class="col-md-8 col-12 d-flex align-items-center justify-content-center text-center">
+              <span style="padding-bottom: 9px; color: black;">Let's have a chat with our <strong>Counselor</strong>
+              </span>
+                    </div>
+                    <div class="col-md-4 text-center d-flex justify-content-center py-1">
+                        <div class="meet-parent">
+                            <div class="zoom_meet">
+                                <a href="javascript:void(0)" data-bs-target="#myModal" data-bs-toggle="modal">
+                                    <img src="{% static 'frontend/images/zoom_socia.png' %}" alt="" />
+                                </a>
+                            </div>
+                            <div class="text-white">Zoom</div>
+                        </div>
+                        <div class="meet-parent">
+                            <div class="meet-google">
+                                <a href="javascript:void(0)" data-bs-target="#myModal" data-bs-toggle="modal">
+                                    <img src="{% static 'frontend/images/meet_google.png' %}" alt="" />
+                                </a>
+                            </div>
+                            <div class="text-white">Google Meet</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="fun text-gradient">
+                <div class="row">
+                    <div class="col-md-6 d-flex justify-content-center justify-content-md-start">
+                        <h2>Past & Upcoming events..</h2>
+                    </div>
+                    <div class="col-md-6"></div>
+                </div>
+            </div>
+            <div class="idfd">
+                <div class="row">
+                    <div class="col-md-6 d-flex align-items-start justify-content-between justify-content-md-evenly">
+                        <a class="interior-design text-gradient" style="padding-top: 38px;"
+                           href="{% url 'interior_design_course' %}">
+                            <div>ID</div>
+                            <span>Interior Design</span>
+                        </a>
+                        <style>
+                            .event-slider {
+                                width: 150px;
+                                height: 150px;
+                                overflow: hidden;
+                                position: relative;
+                                margin: 0 auto;
+                            }
+                        </style>
+                        <div>
+                            <div class="event-slider-interior event-slider">
+                                {% for event in events_interior %}
+                                    <a href="{% url 'view_event' event.slug %}">
+                                        <img src="{{ event.banner.url }}" height="150px" alt="" loading="lazy" />
+                                    </a>
+                                {% endfor %}
+                            </div>
+                            <div class="down event-interior-down" style="cursor: pointer">
+                                <i class="fa fa-caret-down" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 d-flex align-items-start justify-content-between justify-content-md-evenly">
+                        <a class="interior-design text-gradient" style="padding-top: 38px;"
+                           href="{% url 'fashion_design_course' %}">
+                            <div>FD</div>
+                            <span>Fashion Design</span>
+                        </a>
+                        <div>
+                            <div class="event-slider-fashion event-slider">
+                                {% for event in events_fashion %}
+                                    <a href="{% url 'view_event' event.slug %}">
+                                        <img src="{{ event.banner.url }}" height="150px" alt="" loading="lazy" />
+                                    </a>
+                                {% endfor %}
+                            </div>
+                            <div class="down event-fashion-down" style="cursor: pointer">
+                                <i class="fa fa-caret-down" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="collaboration">
+                <div class="row">
+                    <div class="col-md-12 d-flex align-items-center flex-column flex-md-row justify-content-between">
+                        <div>
+                            <h3 class="text-uppercase header-text-gradient">COLLABORATION WITH</h3>
+                        </div>
+                        <div class="my-4 my-md-0">
+                            <div class="borde">
+                                <div class="par_btn">
+                                    <ul class="nav nav-pills d-flex align-items-center">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" data-bs-toggle="tab" aria-current="page"
+                                               href="#first-fashion">FASHION</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" data-bs-toggle="tab" href="#first-interior">INTERIOR</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hidden"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="first-fashion">
+                            <div class="container-fluid">
+                                <div class="box-floating-images">
+                                    <div class="row collaboration-with-slider-fashion">
+                                        {% for item in collaboration_with_fashion %}
+                                            <div class="col-sm-4 pb-4">
+                                                <div class="floating-images-box">
+                                                    <div class="floating-images">
+                                                        <div>
+                                                            <img src="{{ item.image.url }}" alt="" loading="lazy" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="first-interior">
+                            <div class="container-fluid">
+                                <div class="box-floating-images">
+                                    <div class="row collaboration-with-slider-interior">
+                                        {% for item in collaboration_with_interior %}
+                                            <div class="col-sm-4 pb-4">
+                                                <div class="floating-images-box">
+                                                    <div class="floating-images">
+                                                        <div>
+                                                            <img src="{{ item.image.url }}" alt="" loading="lazy" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="collaboration-2">
+                <div class="row">
+                    <div class="col-md-12 d-flex align-items-center justify-content-between flex-column flex-md-row">
+                        <div>
+                            <h3 class="text-uppercase header-text-gradient">Interior exhibitions and fashion shows</h3>
+                        </div>
+                        <div class="my-4 my-md-0">
+                            <div class="borde">
+                                <div class="par_btn">
+                                    <ul class="nav nav-pills d-flex align-items-center">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" data-bs-toggle="tab" aria-current="page"
+                                               href="#second-fashion">FASHION</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" data-bs-toggle="tab"
+                                               href="#second-interior">INTERIOR</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hidden"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="second-fashion">
+                            <div class="container-fluid">
+                                <div class="box-floating-images">
+                                    <div class="row exhibitions-slider-fashion">
+                                        {% for item in fashion_shows %}
+                                            <div class="col-sm-4 pb-4">
+                                                <div class="floating-images-box">
+                                                    <div class="floating-images">
+                                                        <div>
+                                                            <img src="{{ item.image.url }}" alt="" loading="lazy" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="second-interior">
+                            <div class="container-fluid">
+                                <div class="box-floating-images">
+                                    <div class="row exhibitions-slider-interior">
+                                        {% for item in interior_exhibition %}
+                                            <div class="col-sm-4 pb-4">
+                                                <div class="floating-images-box">
+                                                    <div class="floating-images">
+                                                        <div>
+                                                            <img src="{{ item.image.url }}" alt="" loading="lazy" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="box-inifd">
+                <div class="inifd-desiners">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-12 text-center text-gradient">
+                                    <h1>Welcome !!</h1>
+                                    <h4>to INIFD Lindsay street</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-6 col-lg-6">
+                                    <div class="inifd-designer-img">
+                                        <div class="inifd-card">
+                                            <div class="card-image">
+                                                <img src="{% static 'frontend/images/fashion-girl.png' %}" alt="" />
+                                            </div>
+                                            <div class="card-content">
+                                                <h5 class="text-center">FASHION DESIGN</h5>
+                                                <p class="text-center">
+                                                    GET A SUPER SPECIALISATION PROGRAM </p>
+                                                <a href="{% url 'interior_design_course' %}"
+                                                   class="text-center d-block mb-2">Read More</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6 col-lg-6">
+                                    <div class="inifd-designer-img">
+                                        <div class="inifd-card">
+                                            <div class="card-image">
+                                                <img src="{% static 'frontend/images/chair.png' %}" alt="" />
+                                            </div>
+                                            <div class="card-content">
+                                                <h5 class="text-center">INTERIOR DESIGN</h5>
+                                                <p class="text-center">
+                                                    GET A SUPER SPECIALISATION PROGRAM </p>
+                                                <a href="{% url 'fashion_design_course' %}"
+                                                   class="text-center d-block mb-2">Read More</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="coverage " style="padding-top: 20px;padding-bottom: 20px ">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="our-men">
+                                <div class="col-md-12 d-flex justify-content-center justify-content-md-start text-gradient">
+                                    <h3>OUR MENTORS</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mentor-slider " style="padding-top: 30px">
+                            {% for mentor in mentors %}
+                                <div class="col-sm-4 col-4">
+                                    <div class="our-overlay">
+                                        <img src="{{ mentor.profile_image.url }}" class="img-fluid" alt=""
+                                             loading="lazy" />
+                                        <div class="overlay">
+                                            <div class="overlay-content">
+                                                <h4>{{ mentor.name }}</h4>
+                                                <p>{{ mentor.categories }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="our-men">
+                                <div class="col-md-12 d-flex justify-content-center justify-content-md-center text-gradient">
+                                    <h3 class="">MEDIA COVERAGE</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row align-items-center" style="padding-top: 30px">
+                            <div class="col-md-1 text-center d-none d-lg-block">
+                                <a class="btn-light media-slider-prev">
+                                    <i class="fa fa-chevron-left fa-2x text-white"></i>
+                                </a>
+                            </div>
+                            <div class="col-md-10 media-coverage-slider">
+                                {% for media in media_coverages %}
+                                    <div class="" style="width: 100%;justify-content: center;display: flex">
+                                        <img src="{{ media.image.url }}" class="img-fluid" alt=""
+                                             loading="lazy" style="height: 280px" />
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <div class="col-md-1 text-center d-none d-lg-block">
+                                <a class="media-slider-next">
+                                    <i class="fa fa-chevron-right fa-2x text-white"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row" style="padding-top: 20px">
+                <div class="col-sm-12">
+                    <div class="inhouse d-flex justify-content-center justify-content-md-start text-gradient">
+                        <h3>INHOUSE MENTORS</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="box-floating-images" id="inhouse-mentors">
+                <div class="row inhouse-mentor-slider">
+                    {% for im in inhouse_mentors %}
+                        <div class="col-sm-4 col-md-2">
+                            <div class="floating-images-box">
+                                <div class="floating-images">
+                                    <div>
+                                        <img class="b-lazy" src="{% static 'frontend/images/loading.gif' %}" alt=""
+                                             style="height: 195px" data-src="{{ im.profile_image.url }}" />
+                                    </div>
+                                </div>
+                                <div class="inhouse-about">
+                                    <h6 class="text-white">{{ im.name }}</h6>
+                                    <small>{{ im.category }}</small>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="placement-statistics">
+            <div class="container">
+                <div class="recent-placement">
+                    <div class="row">
+                        <div class="col-md-12 pb-2 ">
+                            <h4 class="header-text-gradient">PLACEMENT STATISTICS OF INIFD LINDSAY STREET</h4>
+                            <h4 class="header-text-gradient">RECENT PLACEMENT</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <style>
+                    .placement-image-hover:hover {
+                        transform: scale(1.1);
+                    !important;
+                        transition: all 0.5s ease;
+                    !important;
+                    }
+                </style>
+                <div class="box-floating-images pb-0">
+                    <div class="row">
+                        {% for placement in placements %}
+                            <div class="col-md-3 col-lg-2 col-6 pb-md-3 pb-3">
+                                <div class="gallery-item-wrapper ">
+                                    <div>
+                                        <img class="b-lazy gallery-show"
+                                             src="{% static 'frontend/images/loading.gif' %}"
+                                             data-src="{{ placement.image.url }}"
+                                             alt="{{ placement.title }}"
+                                             width="100%"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        <div class="col-md-12 text-center mb-3">
+                            <a href="{% url 'placement_support' %}" class="btn btn-primary">Show More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-3">
+                    <div class="iam_image">
+                        <img src="{% static 'frontend/images/iam.png' %}" alt="" />
+                    </div>
+                </div>
+                <div class="col-md-3 md-width text-center">
+                    <div class="fd">FD</div>
+                    <a class="ms-up_one slick-arrow-btn" href="javascript:void(0)"><i
+                            class="fa fa-solid fa-caret-up fa-2x text-white"></i></a>
+                    <div class="my_slider my_slider_one">
+                        {% for testimonial in testimonials_fashion %}
+                            <div data-name="{{ testimonial.title }}" data-content="{{ testimonial.description }}"
+                                 class="">
+                                <img src="{{ testimonial.image.url }}"
+                                     alt="" height="180px" width="180px" /></div>
+                        {% endfor %}
+                    </div>
+                    <a class="ms-down_one slick-arrow-btn" href="javascript:void(0)"><i
+                            class="fa fa-solid fa-caret-down fa-2x text-white"></i></a>
+                </div>
+                <div class="col-md-3 md-width text-center">
+                    <div class="fd">ID</div>
+                    <a class="ms-up slick-arrow-btn" href="javascript:void(0)"><i
+                            class="fa fa-solid fa-caret-up fa-2x text-white"></i></a>
+                    <div class="my_slider my_slider_two">
+                        {% for testimonial in testimonials_interior %}
+                            <div data-name="{{ testimonial.title }}" data-content="{{ testimonial.description }}"
+                                 class="">
+                                <img src="{{ testimonial.image.url }}" alt="" height="180px" width="180px" /></div>
+                        {% endfor %}
+                    </div>
+                    <a class="ms-down slick-arrow-btn" href="javascript:void(0)"><i
+                            class="fa fa-solid fa-caret-down fa-2x text-white"></i></a>
+                </div>
+                <div class="col-md-3 text-center">
+                    <div class="idfd-con">
+                        <h4>What saying our students</h4>
+                        <h6 id="testimony-name">Nimisha Agarwal</h6>
+                        <p id="testimony-content" style="text-align: start">
+                            Im glad for persuading Interior designing from INIFD Lindsay
+                            Street Kolkata, this in stitute has given me a lot in personal
+                            .Some people brighten up the room with their presence - the
+                            students and the faculty are one of them in Inifd that do the
+                            same. I value the insights and guid ance they provide and
+                            appreciate the confidence they showed in me. I thank INIFD for
+                            facilitating such a positive learn ing environment, great market
+                            survey's, project handling, site visits and material knowledge.
+                            <br>Thank you for letting me earn the passport and fly high. </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="collaboration-2">
+                <div class="row">
+                    <div class="col-md-12 d-flex justify-content-between align-items-center flex-column flex-md-row">
+                        <div>
+                            <h4 class="header-text-gradient">OUR BEST <br>PLACEMENT PARTNER</h4>
+                        </div>
+                        <div class="my-4">
+                            <div class="borde">
+                                <div class="par_btn">
+                                    <ul class="nav nav-pills d-flex align-items-center">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" data-bs-toggle="tab" aria-current="page"
+                                               href="#third-fashion">FASHION</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" data-bs-toggle="tab" href="#third-interior">INTERIOR</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hidden"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="third-fashion">
+                            <div class="container-fluid">
+                                <div class="box-floating-images">
+                                    <div class="row placement-partner-fashion-slider">
+                                        {% for partner in partners_fashion %}
+                                            <div class="col-sm-4 pb-4">
+                                                <div class="gallery-item-wrapper">
+                                                    <div>
+                                                        <img src="{{ partner.image.url }}"
+                                                             alt=""
+                                                             class="gallery-show"
+                                                             loading="lazy"
+                                                             height="180px"
+                                                             width="190px"
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="third-interior">
+                            <div class="container-fluid">
+                                <div class="box-floating-images">
+                                    <div class="row placement-partner-interior-slider">
+                                        {% for partner in partners_interior %}
+                                            <div class="col-sm-4 pb-4">
+                                                <div class="gallery-item-wrapper">
+                                                    <div>
+                                                        <img src="{{ partner.image.url }}"
+                                                             alt=""
+                                                             class="gallery-show"
+                                                             loading="lazy"
+                                                             height="180px"
+                                                             width="190px"
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="recent-placement">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4 class="header-text-gradient">EMINENT JURY MEMBERS</h4>
+                        <h4 class="header-text-gradient">OF OUR INTERIOR EXHIBITION AND FASHION SHOWS</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="box-floating-images pbpt-0">
+                <div class="row jury-members-slider">
+                    {% for member in jury_members %}
+                        <div class="col-md-3 col-6 col-xs-6 pb-md-3 pb-4">
+                            <div class="floating-images-box">
+                                <div class="floating-images">
+                                    <div>
+                                        <img src="{{ member.profile_image.url }}" alt="" style="height: 195px"
+                                             loading="lazy" />
+                                        <div class="floating-images-content">
+                                            <h5 class="text-white mt-2">{{ member.name }}</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="col-md-12 text-center">
+                    <a href="{% url 'jury_members' %}" class="btn btn-primary">Show More</a>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h4 class="academic-tour header-text-gradient">OUR ACADEMIC TOUR</h4>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="box-floating-images">
+                <div class="row academic-tour-slider">
+                    {% for tour in academic_tours %}
+                        <div class="col-sm-4 pb-4">
+                            <div class="gallery-item-wrapper">
+                                <div>
+                                    <img class="gallery-show b-lazy"
+                                         src="{{ tour.banner.url }}"
+                                         style="height: 280px"
+                                         alt=""
+                                         loading="lazy" />
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h4 class="academic-tour header-text-gradient">Video Slider</h4>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="video-main-slider">
+                {% for video in videos %}
+                <div class="item youtube ms-4">
+                    <iframe class="embed-player slide-media"
+                            width="100%"
+                            height="100%"
+                            src="{{ video.url }}?enablejsapi=1&iv_load_policy=3&fs=0&rel=0&loop=1&start=1"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture, controls=1"
+                            allowfullscreen></iframe>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block script %}
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script type="application/javascript" src="{% static 'frontend/js/my-sliders.js' %}"></script>
+    <script type="application/javascript" src="{% static 'frontend/js/video-slider.js' %}"></script>
+{% endblock %}
+
+

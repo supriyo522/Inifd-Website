@@ -1,0 +1,638 @@
+{% extends 'frontend/base.html' %}
+{% load static %}
+{% block title %}
+    <title>Fashion design - Admission form</title>
+{% endblock %}
+{% block content %}
+    <style>
+        .admission_form_sec {
+            background: #e3d1b3;
+            padding: 0;
+            width: 100%;
+            display: inline-block;
+            color: #fff;
+        }
+
+        .admission_form_top {
+            background: url({% static 'frontend/images/admission_form_topBG.jpg' %}) no-repeat;
+            background-size: cover;
+            padding: 20px 20px;
+        }
+
+        .admission_form_top .top_title {
+            font-family: "Playfair Display", serif;
+            text-align: left;
+            font-size: 30px;
+            font-weight: 900;
+            color: #fff;
+            margin: 20px 0 40px;
+            position: relative;
+        }
+
+        .admission_form_top h3 {
+            font-family: "Playfair Display", serif;
+            color: #ffe622;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .admission_form_top .form_row {
+            margin-bottom: 30px;
+        }
+
+        .admission_form_top .top_checkbox_list span.wpcf7-list-item {
+            padding: 10px 0;
+            margin: 0;
+            line-height: 14px;
+        }
+
+        .admission_form_top .session_field {
+            margin: 0 0 20px;
+        }
+
+        .admission_form_top .form-group {
+            width: 100%;
+            display: inline-block;
+            margin-bottom: 15px;
+            font-family: "Playfair Display", serif;
+            font-size: 15px;
+        }
+
+        .admission_form_top .academic_list h5 {
+            font-family: "Playfair Display", serif;
+            background: rgb(215, 20, 24);
+            width: 100%;
+            padding: 10px 5px;
+            text-align: center;
+            font-size: 15px;
+            color: #fff;
+            line-height: 30px;
+            font-weight: 600;
+        }
+
+        .inner_con_sec p {
+            line-height: 26px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .admission_form_top .academic_list input[type="text"], .admission_form_top .academic_list input[type="tel"] {
+            width: 100%;
+            height: 40px;
+            padding: 8px;
+            color: #fff;
+            background: #ffffff38;
+            border: 1px #eee solid;
+            margin-top: 2px;
+            text-align: center;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .wpcf7-form-control-wrap {
+            position: relative;
+        }
+
+        .admission_form_bottom {
+            background: url({% static 'frontend/images/admission_form_topBG.jpg' %}) no-repeat;
+            background-size: 100%;
+            padding: 30px 30px 0;
+            text-transform: uppercase;
+        }
+
+        .admission_form_bottom h4 {
+            font-family: "Playfair Display", serif;
+            color: #ffeedc;
+            font-size: 20px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .admission_form_bottom ul {
+            list-style: none;
+        }
+
+        .admission_form_bottom ul li {
+            color: #e6dbdb;
+            padding: 4px 0;
+            font-size: 14px;
+        }
+
+        .admission_form_bottom .admission_field p {
+            color: #000;
+            line-height: 36px;
+        }
+
+        .admission_form_top .session_right .right_box {
+            width: 100%;
+            height: 310px;
+            background: #f1cef155;
+            border: 3px #ddd dashed;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .wpcf7-form-control-wrap {
+            position: relative;
+        }
+
+        .admission_form_top .session_right .btn-file {
+            position: relative;
+            overflow: hidden;
+            border-radius: 0;
+            border: none;
+            background: #d71418;
+            color: #fff;
+            padding: 15px 20px;
+            margin: 0% 0 0 0;
+            font-weight: 600;
+        }
+
+        .admission_form_top .top_checkbox_list span.wpcf7-list-item input[type="checkbox"] {
+            float: left;
+            margin: 0 8px 0 0;
+            width: 15px;
+            height: 15px;
+        }
+
+        .admission_form_top .top_checkbox_list span.wpcf7-list-item {
+            padding: 10px 0;
+            margin: 0;
+            line-height: 14px;
+        }
+
+        span.wpcf7-list-item {
+            display: inline-block;
+            margin: 0 0 0 1em;
+        }
+
+        .wpcf7-form-control {
+            width: 100%;
+        }
+
+        .wpcf7-list-item-label {
+            color: #dcd8d8 !important;
+            font-size: 14px;
+        }
+
+        .admission_form_top .session_right .btn-file input[type=file] {
+            position: absolute;
+            top: 0;
+            right: 0;
+            min-width: 100%;
+            min-height: 100%;
+            font-size: 100px;
+            text-align: right;
+            filter: alpha(opacity=0);
+            opacity: 0;
+            outline: none;
+            cursor: inherit;
+            display: block;
+        }
+
+        .admission_form_top .session_left input[type="text"], .admission_form_top .session_left input[type="tel"], .admission_form_top .session_left input[type="email"], .admission_form_top .session_left input[type="date"] {
+            height: 34px;
+            background: #ffffff38;
+            border: 1px #eee solid;
+            padding: 5px 15px;
+            color: #fff;
+        }
+
+        .border-rr {
+            border: 1px solid #fff;
+            padding: 14px;
+        }
+
+        .inifdTxt {
+            text-align: right;
+
+        }
+
+        input[type=checkbox], input[type=radio] {
+            margin: 4px 5px 0;
+            margin-top: 1px \9;
+            line-height: normal;
+        }
+
+        .border-rr button[type="submit"] {
+            cursor: pointer;
+            width: 100%;
+            border: none;
+            background: -webkit-linear-gradient(50deg, #960200, #dc1319) !important;
+            background: -o-linear-gradient(50deg, #960200, #dc1319) !important;
+            background: linear-gradient(40deg, #960200, #dc1319) !important;
+            -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .12);
+            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .12);
+            color: #FFF;
+            margin: 0 0 5px;
+            padding: 10px;
+            font-size: 15px;
+        }
+
+        @media (max-width: 480px) {
+            .admission_form_top {
+                padding: 20px 8px 5px;
+            }
+
+            .admission_form_top .top_title {
+                font-size: 22px;
+            }
+
+            .admission_form_top .form-group {
+                font-size: 12px;
+            }
+
+            .admission_form_bottom h4 {
+                font-size: 14px;
+            }
+
+            .admission_form_bottom {
+                padding: 0px 0px 0;
+            }
+        }
+    </style>
+    <div class="inner-banner">
+        <div class="container">
+            <div class="col-sm-12">
+                <h2>Admission Form</h2>
+            </div>
+            <div class="col-sm-12 inner-breadcrumb">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li>Pages</li>
+                    <li>Admission Form</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Inner Banner Wrapper End -->
+    <!--=======================bodypart========================-->
+    <!-- Inner Banner Wrapper End -->
+    <section class="inner-wrapper">
+        <div class="container">
+            <div class="admission_form_sec">
+                <div class="admission_form_top">
+                    <div class="alert alert-success" id="asmsg" style="display:none;">Thanks For contacting with us
+                    </div>
+                    <div class="border-rr">
+                        <form method="POST"
+                              enctype="multipart/form-data" id="admission-from">
+                            
+                            <h1 class="top_title">ADMISSION FORM </h1>
+                            
+                            <h3>Program OF STUDY</h3>
+                            <input type="hidden" name="course_type" value="fashion">
+                            <div class="form_row top_checkbox_list">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                    <span class="wpcf7-form-control-wrap admission-program">
+                                        <span class="wpcf7-form-control wpcf7-checkbox wpcf7-validates-as-required">
+                                            <span class="wpcf7-list-item first">
+                                                <input type="radio" name="admission_program"
+                                                       value="FN - 101 One Year Foundation Program in Fashion Design"
+                                                       id="program">
+                                                <span class="wpcf7-list-item-label">FN - 101 One Year Foundation Program in Fashion Design</span>
+                                            </span>
+                                            <span class="wpcf7-list-item first">
+                                                <input type="radio" id="admission_program" name="program"
+                                                       value="AD - 201 Two Year Advance Program in Fashion Design">
+                                                <span class="wpcf7-list-item-label">AD - 201 Two Year Advance Program in Fashion Design</span>
+                                            </span>
+                                            <span class="wpcf7-list-item">
+                                                <input type="radio" id="admission_program" name="program"
+                                                       value="SPL - 301 Three Year Specialisation Program in Fashion Design">
+                                                <span class="wpcf7-list-item-label">SPL - 301 Three Year Specialisation Program in Fashion Design</span>
+                                            </span>
+                                            <span class="wpcf7-list-item last">
+                                                <input type="radio" id="admission_program" name="program"
+                                                       value="SS - 211 Two Year Super Specialisation Program in Fashion Design">
+                                                <span class="wpcf7-list-item-label">SS - 211 Two Year Super Specialisation Program in Fashion Design</span>
+                                            </span>
+                                        </span>
+                                    </span>
+                                    </div>
+                                    
+                                    <div class="col-sm-6">
+                                    <span class="wpcf7-form-control-wrap admission-program">
+                                        <span class="wpcf7-form-control wpcf7-checkbox wpcf7-validates-as-required">
+                                            <span class="wpcf7-list-item first">
+                                                <input type="radio" id="admission_program" name="program"
+                                                       value="FN - 1103 One Year Foundation Program in Interior Design">
+                                                <span class="wpcf7-list-item-label">FN - 1103 One Year Foundation Program in Interior Design</span>
+                                            </span>
+                                            <span class="wpcf7-list-item first">
+                                                <input type="radio" id="admission_program" name="program"
+                                                       value="AD - 1203 Two Year Advance Program in Interior Design">
+                                                <span class="wpcf7-list-item-label">AD - 1203 Two Year Advance Program in Interior Design</span>
+                                            </span>
+                                            <span class="wpcf7-list-item">
+                                                <input type="radio" id="admission_program" name="program"
+                                                       value="SPL - 1303 Three Year Specialisation Program in Interior Design">
+                                                <span class="wpcf7-list-item-label">SPL - 1303 Three Year Specialisation Program in Interior Design</span>
+                                            </span>
+                                            <span class="wpcf7-list-item last">
+                                                <input type="radio" id="admission_program" name="program"
+                                                       value="SS - 1213 Two Year Super Specialisation Program in Interior Design">
+                                                <span class="wpcf7-list-item-label">SS - 1213 Two Year Super Specialisation Program in Interior Design</span>
+                                            </span>
+                                        </span>
+                                    </span>
+                                    </div>
+                                </div>
+                                <div id="add_pg" style="color: red;"></div>
+                            </div>
+                            
+                            <hr>
+                            
+                            <div class="form_row">
+								<div class="row">
+									<div class="col-sm-9 session_left">
+										<div class="form-group session_field">
+											<h3 class="required">SESSION:</h3>
+											<p>
+                                            <span class="wpcf7-form-control-wrap admission-session">
+                                                <input type="text" name="session" id="admission_session"
+                                                       size="40"
+                                                       class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required"
+                                                       aria-required="true" aria-invalid="false" required>
+                                            </span>
+											</p>
+										</div>
+										<div class="form-group name_field">
+											<label class="required">Name (English) in CAPITAL LETTERS:
+												MR./Ms./Mrs</label>
+											<span class="wpcf7-form-control-wrap admission-name">
+                                            <input type="text" name="name" size="40" id="admission_name"
+                                                   class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required"
+                                                   aria-required="true" aria-invalid="false" required>
+                                        </span>
+										</div>
+										<div class="form-group">
+											<div class="row">
+												<div class="col-sm-7 date_field">
+													<label class="required">Date of Birth: </label>
+													<span class="wpcf7-form-control-wrap admission-date">
+                                                    <input type="date" id="datepicker" name="date_of_birth"
+                                                           class="wpcf7-form-control wpcf7-date wpcf7-validates-as-required wpcf7-validates-as-date"
+                                                           aria-required="true" aria-invalid="false" required>
+                                                </span>
+												</div>
+												<div class="col-sm-5 sex_field">
+													<label class="required">Gender:</label>
+													<span class="wpcf7-form-control-wrap sex">
+                                                    <span class="wpcf7-form-control wpcf7-radio"
+                                                          style="display: inline-flex">
+                                                        <span class="wpcf7-list-item first">
+                                                            <input type="radio" name="gender" value="male" required>
+                                                            <span class="wpcf7-list-item-label">Male</span>
+                                                        </span>
+                                                        <span class="wpcf7-list-item last">
+                                                            <input type="radio" name="gender" value="female" required>
+                                                            <span class="wpcf7-list-item-label">Female</span>
+                                                        </span>
+	                                                    <span class="wpcf7-list-item last">
+                                                            <input type="radio" name="gender" value="other" required>
+                                                            <span class="wpcf7-list-item-label">Other</span>
+                                                        </span>
+                                                    </span>
+                                                </span>
+													<div id="sex_err" style="color: red;"></div>
+												</div>
+											</div>
+										</div>
+										<div class="form-group guardian_field">
+											<label>Name of The Guardian (Father/Mother/Husband/): </label>
+											<span class="wpcf7-form-control-wrap admission-guardian-name">
+                                            <input type="text" name="guardian_name"
+                                                   id="admission_guardian_name" size="40"
+                                                   class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required"
+                                                   aria-required="true" aria-invalid="false">
+                                        </span>
+										</div>
+										<div class="form-group address_field">
+											<label class="required">Address: </label>
+											<span class="wpcf7-form-control-wrap admission-address">
+                                            <input type="text" name="address" id="admission_address" size="40"
+                                                   class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required"
+                                                   aria-required="true" aria-invalid="false" required>
+                                        </span>
+										</div>
+										<div class="form-group">
+											<div class="row">
+												<div class="col-sm-3 pin_field">
+													<label>Pin Code: </label>
+													<span class="wpcf7-form-control-wrap admission-pin">
+                                                    <input type="text" name="pin_code" id="admission_pin" value=""
+                                                           size="40"
+                                                           class="wpcf7-form-control wpcf7-text wpcf7-tel wpcf7-validates-as-required wpcf7-validates-as-tel"
+                                                           aria-required="true" aria-invalid="false">
+                                                </span>
+												</div>
+												<div class="col-sm-5 email_field">
+													<label>Email </label>
+													<span class="wpcf7-form-control-wrap admission-email">
+                                                    <input type="email" name="email" id="admission_email"
+                                                           value="" size="40"
+                                                           class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email"
+                                                           aria-required="true" aria-invalid="false">
+                                                </span>
+												</div>
+												<div class="col-sm-4 contact_field">
+													<label class="required">Contact No:</label>
+													<span class="wpcf7-form-control-wrap admission-contact">
+                                                    <input type="tel" name="phone" id="admission_contact"
+                                                           value="" size="40"
+                                                           class="wpcf7-form-control wpcf7-text wpcf7-tel wpcf7-validates-as-required wpcf7-validates-as-tel"
+                                                           aria-required="true" aria-invalid="false" required>
+                                                </span>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-3 session_right">
+										<div class="right_box"><img id="output" style="height: 100%; width: 100%;">
+										</div>
+										<span class="btn btn-primary btn-file">Upload Your Picture
+                                        <input type="file" name="image" size="40" id="adm_image"
+                                               class="wpcf7-form-control wpcf7-file" aria-invalid="false"
+                                               onchange="loadFile(event)">
+                                        <span class="wpcf7-form-control-wrap admission-file">
+
+                                        </span>
+                                    </span>
+										<div id="imgDIV" style="color: red;"></div>
+									</div>
+								</div>
+							</div>
+							<div class="form_row academic_list">
+								<h3>Academic Details:</h3>
+								<div class="row">
+									<div class="col-sm-3">
+										<h5>School / College</h5>
+										<p>
+                                        <span class="wpcf7-form-control-wrap admission-school1">
+                                            <input type="text" name="academic_1_name" value="" size="40"
+                                                   class="wpcf7-form-control wpcf7-text" aria-invalid="false">
+                                        </span>
+											<span class="wpcf7-form-control-wrap admission-school2">
+                                            <input type="text" name="academic_2_name" size="40"
+                                                   class="wpcf7-form-control wpcf7-text" aria-invalid="false">
+                                        </span>
+											<span class="wpcf7-form-control-wrap admission-school3">
+                                            <input type="text" name="academic_3_name" size="40"
+                                                   class="wpcf7-form-control wpcf7-text" aria-invalid="false">
+                                        </span>
+										</p>
+										<div id="admission_school[]"></div>
+									</div>
+									<div class="col-sm-3">
+										<h5>BOARD / UNIVERSITY</h5>
+										<p>
+                                        <span class="wpcf7-form-control-wrap admission-board1">
+                                            <input type="text" name="academic_1_board" value="" size="40"
+                                                   class="wpcf7-form-control wpcf7-text" aria-invalid="false">
+                                        </span>
+											<span class="wpcf7-form-control-wrap admission-board2">
+                                            <input type="text" name="academic_2_board" value="" size="40"
+                                                   class="wpcf7-form-control wpcf7-text" aria-invalid="false">
+                                        </span>
+											<span class="wpcf7-form-control-wrap admission-board3">
+                                            <input type="text" name="academic_3_board" value="" size="40"
+                                                   class="wpcf7-form-control wpcf7-text" aria-invalid="false">
+                                        </span>
+										</p>
+										<div id="admission_board[]"></div>
+									</div>
+									<div class="col-sm-2">
+										<h5>Year</h5>
+										<p>
+                                        <span class="wpcf7-form-control-wrap admission-year1">
+                                            <input type="text" name="academic_1_year" size="40"
+                                                   class="wpcf7-form-control wpcf7-text" aria-invalid="false">
+                                        </span>
+											<span class="wpcf7-form-control-wrap admission-year2">
+                                            <input type="text" name="academic_2_year" size="40"
+                                                   class="wpcf7-form-control wpcf7-text" aria-invalid="false">
+                                        </span>
+											<span class="wpcf7-form-control-wrap admission-year3">
+                                            <input type="text" name="academic_3_year" value="" size="40"
+                                                   class="wpcf7-form-control wpcf7-text" aria-invalid="false">
+                                        </span>
+										</p>
+										<div id="admission_year[]"></div>
+									</div>
+									<div class="col-sm-2">
+										<h5>SUBJECT</h5>
+										<p>
+                                        <span class="wpcf7-form-control-wrap admission-subject1">
+                                            <input type="text" name="academic_1_subject" size="40"
+                                                   class="wpcf7-form-control wpcf7-text" aria-invalid="false">
+                                        </span>
+											<span class="wpcf7-form-control-wrap admission-subject2">
+                                            <input type="text" name="academic_2_subject" size="40"
+                                                   class="wpcf7-form-control wpcf7-text" aria-invalid="false">
+                                        </span>
+											<span class="wpcf7-form-control-wrap admission-subject3">
+                                            <input type="text" name="academic_3_subject" size="40"
+                                                   class="wpcf7-form-control wpcf7-text" aria-invalid="false">
+                                        </span>
+										</p>
+										<div id="admission_subject[]"></div>
+									</div>
+									<div class="col-sm-2">
+										<h5>Percentage</h5>
+										<p>
+                                        <span class="wpcf7-form-control-wrap admission-percentage1">
+                                            <input type="text" name="academic_1_percentage" size="40"
+                                                   class="wpcf7-form-control wpcf7-text" aria-invalid="false">
+                                        </span>
+											<span class="wpcf7-form-control-wrap admission-percentage2">
+                                            <input type="text" name="academic_2_percentage" size="40"
+                                                   class="wpcf7-form-control wpcf7-text" aria-invalid="false">
+                                        </span>
+											<span class="wpcf7-form-control-wrap admission-percentage3">
+                                            <input type="text" name="academic_3_percentage" size="40"
+                                                   class="wpcf7-form-control wpcf7-text" aria-invalid="false">
+                                        </span>
+										</p>
+										<div id="admission_percentage[]"></div>
+									</div>
+								</div>
+							</div>
+                            
+                            <div class="admission_form_bottom">
+                                <div class="form_row">
+                                    <h4>Documents Required at the time of Admission -</h4>
+                                    <ul>
+                                        <li>1. Photocopy of class 12 Mark sheet.</li>
+                                        <li>2. Photocopy Class 10 Mark sheet.</li>
+                                        <li>3. Photocopy of Voter ID/ Adhar Card.</li>
+                                        <li>4. Colour passport size photo(6 Pcs)</li>
+                                    </ul>
+                                </div>
+                                <hr>
+                                <div class="form_row">
+                                    <div class="row">
+                                        <div class="col-sm-6 contactTxt">
+                                            <p>CONTACT: 91 3322175401 / 02</p>
+                                        </div>
+                                        <div class="col-sm-6 inifdTxt">
+                                            <p>www.inifdlindsaystreet.net</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <button disabled name="submit" type="submit" id="contact-submit" data-submit="...Sending">
+                                Submit
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+{% block script %}
+	<script>
+        function loadFile(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+            reader.onload = function () {
+                const output = document.getElementById('output');
+                output.src = reader.result;
+            };
+            reader.readAsDataURL(file);
+        };
+        const form = document.getElementById('admission-from');
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            $("#contact-submit").html("Submitting...");
+            const formData = new FormData(this);
+            fetch('{% url 'handle_admission_form' %}', {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': $('input[name=csrfmiddlewaretoken]').val(),
+
+                },
+                body: formData
+            }).then(function (response) {
+                return response.json();
+            }).then(function (data) {
+                if (data.status === "success") {
+					alert(data.message);
+					form.reset();
+				} else {
+					alert(data.message);
+				}
+			}).catch(function (error) {
+				console.log(error);
+            });
+            $("#contact-submit").attr("disabled", false).html("Submit");
+        });
+	</script>
+
+{% endblock %}

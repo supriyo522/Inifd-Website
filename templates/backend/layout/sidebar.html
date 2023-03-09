@@ -1,0 +1,312 @@
+{% load static %}
+<aside class="sidebar-wrapper" data-simplebar="true">
+    <div class="sidebar-header">
+        <div>
+            <img src="{% static 'frontend/images/logo.jpg' %}" class="logo-icon" alt="logo icon"/>
+        </div>
+        <div>
+            <h4 class="logo-text">INIFD</h4>
+        </div>
+        <div class="toggle-icon ms-auto">
+            <i class="bi bi-chevron-double-left"></i>
+        </div>
+    </div>
+    <!--navigation-->
+    <ul class="metismenu" id="menu">
+        <li>
+            <a href="{% url 'backend_dashboard' %}">
+                <div class="parent-icon"><i class="bi bi-house-door"></i></div>
+                <div class="menu-title">Dashboard</div>
+            </a>
+        </li>
+        {% if perms.backend.view_websitesettings %}
+            <li>
+                <a href="javascript:" class="has-arrow">
+                    <div class="parent-icon"><i class="bi bi-award"></i></div>
+                    <div class="menu-title">Settings</div>
+                </a>
+                <ul>
+                    {% if perms.backend.view_websitesettings %}
+                        <li>
+                            <a href="{% url 'backend_website_settings' %}"><i class="bi bi-arrow-right-short"></i>Website
+                                setting</a>
+                        </li>
+                    {% endif %}
+                    {% if perms.backend.view_homepage_section %}
+                        <li>
+                            <a href="{% url 'backend_website_settings' %}">
+                                <i class="bi bi-arrow-right-short"></i>Homepage Sections</a>
+                        </li>
+                    {% endif %}
+                    {% if perms.backend.view_aboutus %}
+                        <li>
+                            <a href="{% url 'backend_about_us' %}"><i class="bi bi-arrow-right-short"></i>About us</a>
+                        </li>
+                    {% endif %}
+                    {% if perms.backend.view_page %}
+                        <li>
+                            <a href="{% url 'backend_pages' %}"><i class="bi bi-arrow-right-short"></i>Pages</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </li>
+        {% endif %}
+        {% if perms.backend.view_enquiries %}
+            <li>
+                <a href="{% url 'backend_leads_enquiry' %}">
+                    <div class="parent-icon"><i class="bi bi-bag-check"></i></div>
+                    <div class="menu-title">Leads & Enquiry</div>
+                </a>
+            </li>
+        {% endif %}
+        {% if perms.backend.view_visiters %}
+            <li>
+                <a href="javascript:;">
+                    <div class="parent-icon"><i class="bi bi-bag-check"></i></div>
+                    <div class="menu-title">Visitors</div>
+                </a>
+            </li>
+        {% endif %}
+        {% if perms.backend.view_menuitems %}
+            <li>
+                <a href="{% url 'backend_menu_items' %}">
+                    <div class="parent-icon"><i class="bi bi-bag-check"></i></div>
+                    <div class="menu-title">Menus</div>
+                </a>
+            </li>
+        {% endif %}
+        {% if perms.backend.view_mainbanners %}
+            <li>
+                <a href="{% url 'backend_main_banners' %}">
+                    <div class="parent-icon"><i class="bi bi-bag-check"></i></div>
+                    <div class="menu-title">Main banners</div>
+                </a>
+            </li>
+        {% endif %}
+        {% if perms.backend.view_subbanners %}
+            <li>
+                <a href="{% url 'backend_sub_banners' %}">
+                    <div class="parent-icon"><i class="bi bi-bookmark-star"></i></div>
+                    <div class="menu-title">Sub Banners</div>
+                </a>
+            </li>
+        {% endif %}
+        {% if perms.backend.view_collaboration %}
+            <li>
+                <a href="{% url 'backend_collaborations' %}">
+                    <div class="parent-icon"><i class="bi bi-bookmark-star"></i></div>
+                    <div class="menu-title">Collaboration</div>
+                </a>
+            </li>
+        {% endif %}
+        {% if perms.backend.view_interior_exhibition %}
+            <li>
+                <a href="{% url 'backend_interior_exhibitions' %}">
+                    <div class="parent-icon"><i class="bi bi-bookmark-star"></i></div>
+                    <div class="menu-title">Interior Exhibition</div>
+                </a>
+            </li>
+        {% endif %}
+        {% if perms.backend.view_fashion_shows %}
+            <li>
+                <a href="{% url 'backend_fashion_shows' %}">
+                    <div class="parent-icon"><i class="bi bi-bookmark-star"></i></div>
+                    <div class="menu-title">Fashion Shows</div>
+                </a>
+            </li>
+        {% endif %}
+        {% if perms.backend.view_in_house_mentor %}
+            <li>
+                <a href="{% url 'backend_inhouse_mentors' %}">
+                    <div class="parent-icon"><i class="bi bi-bookmark-star"></i></div>
+                    <div class="menu-title">In-house Mentors</div>
+                </a>
+            </li>
+        {% endif %}
+        {% if perms.backend.view_mentors %}
+            <li>
+                <a href="javascript:" class="has-arrow">
+                    <div class="parent-icon"><i class="bi bi-award"></i></div>
+                    <div class="menu-title">Course</div>
+                </a>
+                <ul>
+                    {% if perms.backend.view_course %}
+                        <li>
+                            <a href="{% url 'backend_courses' %}"><i class="bi bi-arrow-right-short"></i>
+                                Courses</a>
+                        </li>
+                    {% endif %}
+                    {% if perms.backend.view_career_options %}
+                        <li>
+                            <a href="{% url 'backend_course_career_options' %}">
+                                <i class="bi bi-arrow-right-short"></i>Career Options</a>
+                        </li>
+                    {% endif %}
+                    {% if perms.backend.view_admission %}
+                        <li>
+                            <a href="{% url 'backend_about_us' %}"><i class="bi bi-arrow-right-short"></i>Admission Request</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </li>
+        {% endif %}
+        {% if perms.backend.view_mentors %}
+            <li>
+                <a href="{% url 'backend_mentors' %}">
+                    <div class="parent-icon"><i class="bi bi-file-earmark-break"></i></div>
+                    <div class="menu-title">Mentors</div>
+                </a>
+            </li>
+        {% endif %}
+        {% if perms.backend.view_jurymember %}
+            <li>
+                <a href="{% url 'backend_jury_members' %}">
+                    <div class="parent-icon"><i class="bi bi-file-earmark-break"></i></div>
+                    <div class="menu-title">Jury Members</div>
+                </a>
+            </li>
+        {% endif %}
+        {% if perms.backend.view_mediacoverage %}
+            <li>
+                <a href="{% url 'backend_media_coverages' %}">
+                    <div class="parent-icon">
+                        <i class="bi bi-file-earmark-spreadsheet"></i>
+                    </div>
+                    <div class="menu-title">Media coverage</div>
+                </a>
+            </li>
+        {% endif %}
+        {% if perms.backend.view_events %}
+            <li>
+                <a class="has-arrow" href="javascript:">
+                    <div class="parent-icon"><i class="bi bi-lock"></i></div>
+                    <div class="menu-title">Events & Activities</div>
+                </a>
+                <ul>
+                    <li>
+                        <a href="{% url 'backend_student_works' %}"><i class="bi bi-arrow-right-short"></i>Student work</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'backend_academic_tours' %}"><i class="bi bi-arrow-right-short"></i>Academic
+                            tours</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'backend_events' %}"><i class="bi bi-arrow-right-short"></i>Events</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'backend_upcoming_events' %}"><i class="bi bi-arrow-right-short"></i>Upcoming
+                            Events</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'backend_past_events' %}"><i class="bi bi-arrow-right-short"></i>Past Events</a>
+                    </li>
+                </ul>
+            </li>
+        {% endif %}
+        {#        {% if perms.backend.view_partners %}#}
+        {#            <li>#}
+        {#                <a href="{% url 'backend_partners' %}">#}
+        {#                    <div class="parent-icon">#}
+        {#                        <i class="bi bi-exclamation-triangle"></i>#}
+        {#                    </div>#}
+        {#                    <div class="menu-title">Partners</div>#}
+        {#                </a>#}
+        {#            </li>#}
+        {#        {% endif %}#}
+        {% if perms.backend.view_academictours %}
+            <li>
+                <a href="{% url 'backend_academic_tours' %}">
+                    <div class="parent-icon"><i class="bi bi-person-check"></i></div>
+                    <div class="menu-title">Academic Tours</div>
+                </a>
+            </li>
+        {% endif %}
+        {% if perms.backend.view_imagegallery %}
+            <li>
+                <a class="has-arrow" href="javascript:;">
+                    <div class="parent-icon"><i class="bi bi-lock"></i></div>
+                    <div class="menu-title">Gallery</div>
+                </a>
+                <ul>
+                    <li>
+                        <a href="{% url 'backend_image_gallery' %}"><i class="bi bi-arrow-right-short"></i>Image gallery</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'backend_video_gallery' %}"><i class="bi bi-arrow-right-short"></i>Video gallery</a>
+                    </li>
+                </ul>
+            </li>
+        {% endif %}
+        {% if perms.backend.view_testimonials %}
+            <li>
+                <a href="{% url 'backend_testimonials' %}">
+                    <div class="parent-icon"><i class="bx bx-error"></i></div>
+                    <div class="menu-title">Testimonials</div>
+                </a>
+            </li>
+        {% endif %}
+        {% if perms.backend.view_placements %}
+            <li>
+                <a href="{% url 'backend_placements' %}">
+                    <div class="parent-icon"><i class="bi bi-cloud-arrow-down"></i></div>
+                    <div class="menu-title">Placements</div>
+                </a>
+            </li>
+        {% endif %}
+        {% if perms.backend.view_placementpartners %}
+            <li>
+                <a href="{% url 'backend_placement_partners' %}">
+                    <div class="parent-icon">
+                        <i class="bi bi-exclamation-triangle"></i>
+                    </div>
+                    <div class="menu-title">Placement Partners</div>
+                </a>
+            </li>
+        {% endif %}
+        {% if perms.backend.view_awards %}
+            <li>
+                <a href="{% url 'backend_awards' %}">
+                    <div class="parent-icon">
+                        <i class="bi bi-exclamation-triangle"></i>
+                    </div>
+                    <div class="menu-title">Awards</div>
+                </a>
+            </li>
+        {% endif %}
+        {% if perms.backend.view_globalopportunities %}
+            <li>
+                <a href="{% url 'backend_global_opportunities' %}">
+                    <div class="parent-icon">
+                        <i class="bi bi-exclamation-triangle"></i>
+                    </div>
+                    <div class="menu-title">Global Opportunities</div>
+                </a>
+            </li>
+        {% endif %}
+        {% if perms.backend.view_blogpost %}
+            <li>
+                <a href="{% url 'backend_blogposts' %}">
+                    <div class="parent-icon">
+                        <i class="bi bi-exclamation-triangle"></i>
+                    </div>
+                    <div class="menu-title">Blogpost</div>
+                </a>
+            </li>
+        {% endif %}
+        {% if perms.backend.view_users %}
+            <li>
+                <a href="">
+                    <div class="parent-icon"><i class="bi bi-credit-card-2-front"></i></div>
+                    <div class="menu-title">Users</div>
+                </a>
+            </li>
+        {% endif %}
+        <li>
+            <a href="{% url 'backend_logout' %}">
+                <div class="parent-icon"><i class="bi bi-credit-card-2-front"></i></div>
+                <div class="menu-title">Logout</div>
+            </a>
+        </li>
+    </ul>
+    <!--end navigation-->
+</aside>

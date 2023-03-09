@@ -1,0 +1,40 @@
+{% extends 'frontend/base.html' %}
+{% block title %}
+    <title>Students work</title>
+{% endblock %}
+
+{% block content %}
+    <div class="inner-banner">
+        <div class="container">
+            <div class="col-sm-12">
+                <h2>Video Gallery</h2>
+            </div>
+            <div class="col-sm-12 inner-breadcrumb">
+                <ul>
+                    <li><a href="https://inifdlindsaystreet.net/">Home</a></li>
+                    <li>Pages</li>
+                    <li>Video Gallery</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Inner Banner Wrapper End -->
+    <!--=======================bodypart========================-->
+    <section class="inner-wrapper">
+        <div class="custom-container">
+            <h2>Video gallery</h2>
+            <div class="inner-wrapper-main about-edu">
+                <div class="row">
+                    {% for video in videos %}
+                        <div class="col-sm-3">
+                            <iframe width="100%" height="200" src="{{ video.url }}" frameborder="0" loading="lazy"
+                                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen></iframe>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

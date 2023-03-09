@@ -1,0 +1,101 @@
+{% extends 'frontend/base.html' %}
+
+{% block title %}
+    <title>Award and recognition</title>
+
+{% endblock %}
+
+{% block content %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.css"
+          integrity="sha512-Woz+DqWYJ51bpVk5Fv0yES/edIMXjj3Ynda+KWTIkGoynAMHrqTcDUQltbipuiaD5ymEo9520lyoVOo9jCQOCA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <!-- Inner Banner Wrapper Start -->
+    <div class="inner-banner">
+        <div class="container">
+            <div class="col-sm-12">
+                <h2>Award Recognition</h2>
+            </div>
+            <div class="col-sm-12 inner-breadcrumb">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li>Pages</li>
+                    <li>Award Recognition</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Inner Banner Wrapper End -->
+    <!--=======================bodypart========================-->
+    <!-- Inner Banner Wrapper End -->
+    <section class="inner-wrapper">
+        <div class="custom-container">
+            <h2>Award Recognition</h2>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="inner-wrapper-main about-edu">
+                        <!-- Gallery Start -->
+                        <div class="row">
+                            {% for award in awards %}
+                                <div class="col-sm-4">
+                                    <div class="image-gallery-box">
+                                        <div class="img-holder">
+                                            <a class="example-image-link" href="{{ award.image.url }}"
+                                               data-lightbox="example-1">
+                                                <img class="example-image img-responsive" src="{{ award.image.url }}"
+                                                     alt=""/></a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="alert alert-success" id="asmsg" style="display:none;">Thanks For contacting with
+                        us
+                    </div>
+                    <div class="alert alert-success" id="anmsg" style="display:none;">Message didn't sent,please
+                        try
+                        again!!
+                    </div>
+                    <form id="contact" method="post" id="course_enquiry_form">
+                        {% csrf_token %}
+                        <h3>Course Enquiry</h3>
+                        <fieldset>
+                            {{ form.name }}
+                        </fieldset>
+                        <fieldset>
+                            {{ form.email }}
+                        </fieldset>
+                        <fieldset>
+                            {{ form.phone }}
+                        </fieldset>
+                        {{ form.course }}
+                        <fieldset>
+                            {{ form.message }}
+                        </fieldset>
+                        <fieldset>
+                            <button id="course_inquiry_form_btn" name="submit" type="submit" data-submit="...Sending">
+                                Submit
+                            </button>
+                        </fieldset>
+                    </form>
+                    <div style="margin-top:15px">
+                        <iframe style="border: 2px solid #fff;" width="100%" height="300"
+                                src="https://www.youtube.com/embed/p5VIv8yWWNk" frameborder="0"
+                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block script %}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"
+            integrity="sha512-Ixzuzfxv1EqafeQlTCufWfaC6ful6WFqIz4G+dWvK0beHw0NVJwvCKSgafpy5gwNqKmgUfIBraVwkKI+Cz0SEQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+{% endblock %}
