@@ -78,69 +78,73 @@ regex = re.compile("^[6-9]\d{9}$")
 
 
 def submit_lead_form(request):
-    ip, is_routable = get_client_ip(request)
-    if request.method == "POST":
-        data = json.loads(request.body)
-        if regex.match(data["phone"]):
-            new_enquiry = Enquiries.objects.create(name=data["name"], phone=data["phone"], ip_address=ip, )
-            new_enquiry.save()
-            send_enquiry_form_otp(data["phone"])
-            return JsonResponse({"success": True, 'mobile': data["phone"]})
-    else:
-        return JsonResponse({"success": False})
+    # ip, is_routable = get_client_ip(request)
+    # if request.method == "POST":
+    #     data = json.loads(request.body)
+    #     if regex.match(data["phone"]):
+    #         new_enquiry = Enquiries.objects.create(name=data["name"], phone=data["phone"], ip_address=ip, )
+    #         new_enquiry.save()
+    #         send_enquiry_form_otp(data["phone"])
+    #         return JsonResponse({"success": True, 'mobile': data["phone"]})
+    # else:
+    #     return JsonResponse({"success": False})
+    pass
 
 
 def enquiry_otp_validation(request):
-    if request.method == "POST":
-        data = json.loads(request.body)
-        if regex.match(data["phone"]):
-            try:
-                last_otp = EnquiryFormOTP.objects.filter(mobile=data["phone"]).last()
-                if last_otp.is_used is False and last_otp.otp == data["otp"]:
-                    last_otp.is_used = True
-                    last_otp.save()
-                    enquiry = Enquiries.objects.filter(phone=data["phone"]).last()
-                    enquiry.is_verified = True
-                    enquiry.save()
-                    send_enquiry_email.delay(enquiry.id)
-                    return JsonResponse({"success": True, "message": "OTP verified successfully"})
-                else:
-                    return JsonResponse({"success": False, "message": "OTP is invalid"})
-            except EnquiryFormOTP.DoesNotExist:
-                return JsonResponse({"success": False})
-    else:
-        return JsonResponse({"success": False})
+    # if request.method == "POST":
+    #     data = json.loads(request.body)
+    #     if regex.match(data["phone"]):
+    #         try:
+    #             last_otp = EnquiryFormOTP.objects.filter(mobile=data["phone"]).last()
+    #             if last_otp.is_used is False and last_otp.otp == data["otp"]:
+    #                 last_otp.is_used = True
+    #                 last_otp.save()
+    #                 enquiry = Enquiries.objects.filter(phone=data["phone"]).last()
+    #                 enquiry.is_verified = True
+    #                 enquiry.save()
+    #                 send_enquiry_email.delay(enquiry.id)
+    #                 return JsonResponse({"success": True, "message": "OTP verified successfully"})
+    #             else:
+    #                 return JsonResponse({"success": False, "message": "OTP is invalid"})
+    #         except EnquiryFormOTP.DoesNotExist:
+    #             return JsonResponse({"success": False})
+    # else:
+    #     return JsonResponse({"success": False})
+    pass
 
 
 def submit_application_form(request):
-    ip, is_routable = get_client_ip(request)
-    if request.method == "POST":
-        data = json.loads(request.body)
-        if regex.match(data["phone"]):
-            new_enquiry = Enquiries.objects.create(name=data["name"], phone=data["phone"], email=data["email"],
-                                                   course=data["course"], message=data["message"], ip_address=ip, )
-            new_enquiry.save()
-            return JsonResponse({"success": True})
-    else:
-        return JsonResponse({"success": False})
+    # ip, is_routable = get_client_ip(request)
+    # if request.method == "POST":
+    #     data = json.loads(request.body)
+    #     if regex.match(data["phone"]):
+    #         new_enquiry = Enquiries.objects.create(name=data["name"], phone=data["phone"], email=data["email"],
+    #                                                course=data["course"], message=data["message"], ip_address=ip, )
+    #         new_enquiry.save()
+    #         return JsonResponse({"success": True})
+    # else:
+    #     return JsonResponse({"success": False})
+    pass
 
 
 def submit_page_enquiry_form(request):
-    ip, is_routable = get_client_ip(request)
-    if request.method == "POST":
-        form = CourseEnquiryForm(request.POST)
-        # print(request.POST.get('name'))
-        if form.is_valid():
-            phone = form.cleaned_data['phone']
-            if regex.match(phone):
-                new_query = form.save(commit=False)
-                new_query.ip_address = ip
-                new_query.save()
-                return JsonResponse({"success": True})
-            else:
-                return JsonResponse({"success": False})
-    else:
-        return JsonResponse({"success": False})
+    # ip, is_routable = get_client_ip(request)
+    # if request.method == "POST":
+    #     form = CourseEnquiryForm(request.POST)
+    #     # print(request.POST.get('name'))
+    #     if form.is_valid():
+    #         phone = form.cleaned_data['phone']
+    #         if regex.match(phone):
+    #             new_query = form.save(commit=False)
+    #             new_query.ip_address = ip
+    #             new_query.save()
+    #             return JsonResponse({"success": True})
+    #         else:
+    #             return JsonResponse({"success": False})
+    # else:
+    #     return JsonResponse({"success": False})
+    pass
 
 
 def view_page(request, page_id, page_slug):
